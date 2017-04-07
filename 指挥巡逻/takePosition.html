@@ -1,0 +1,889 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+        <script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+        <script src="js/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+        <script src="js/vue.js"></script>
+        <script src="js/vue-resource.js"></script>
+        <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=4939f20cc60ba84508d5c3e94969d549&plugin=AMap.Riding"></script>
+        <script src="js/plugin/requestAnimationFrame.js"></script>
+        <script src="js/plugin/JSDateFormat.js"></script>
+        <!--标准mui.css-->
+        <link rel="stylesheet" href="css/MUI.min.css">
+
+         <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+         <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+          <script>
+
+          </script>
+        <style>
+          .mui-plus.mui-android header.mui-bar{
+            display: none;
+          }
+          .mui-plus.mui-android .mui-bar-nav~.mui-content{
+            padding: 0;
+          }
+          body{
+             font-family: "Microsoft YaHei";
+             overflow: hidden;
+             text-align: center;
+          }
+          #container {
+            margin:4px;
+            width:98%;
+            height:99%;
+          }
+          .amap-marker .marker-route {
+              position: absolute;
+              width: 40px;
+              height: 44px;
+              color: #e90000;
+              background: url(http://webapi.amap.com/theme/v1.3/images/newpc/poi-1.png) no-repeat;
+              cursor: pointer;
+          }
+          .amap-marker .marker-now{
+            background-position: -270px -93px;
+          }
+          .amap-marker .marker-marker-bus-from {
+              background-position: -334px -180px;
+          }
+          .amap-marker .marker-marker-bus-end{
+              background-position: -334px -135px;
+          }
+          .count_div{
+             z-index:1000;
+             position:absolute;
+             width:80%;
+             top:6.5%;
+             left:10%;
+             right:auto;
+             background-color: #ffffff;
+             font-weight: 600;
+          }
+          .c_head{
+              padding: 16px;
+             text-align: center;
+             margin-left:29px;
+             color:#0ca900;
+          }
+          .count_div .content span{
+              color:#000;
+              display: inline-block;
+              text-align: center;
+              margin-bottom: 28px;
+              width: 31%;
+              line-height: 32px;
+          }
+          .count_div .content span+span:before{
+              content:'';
+              overflow: hidden;
+              position:absolute;
+              height:35px;
+              width: 1px;
+              top:63px;
+              display: block;
+              background: rgba(153,153,153,0.54);
+          }
+          .amap-zoomcontrol{
+             bottom:12px!important;
+          }
+          .amap-lib-driving{
+            display: none;
+          }
+          #panel {
+              position: fixed;
+              background-color: white;
+              max-height: 90%;
+              overflow-y: auto;
+              top: 10px;
+              right: 10px;
+              width: 280px;
+          }
+          /*计数完成样式*/
+          #showDet .content span span{
+               width: 100%;
+          }
+          #showDet .content.active span:nth-child(1) span,
+          #showDet .content.active span:nth-child(2) span{
+              color:#a6a6a6;
+          }
+          #showDet .content.active span:nth-child(3) span{
+             color:#0ca900;
+          }
+
+          /*vue过度动画*/
+          .bounce-transition {
+            display: inline-block; /* 否则 scale 动画不起作用 */
+          }
+          .bounce-enter {
+            animation: bounce-in 5.5s;
+          }
+          .bounce-leave {
+            animation: bounce-out .5s;
+          }
+          @keyframes bounce-in {
+            0% {
+              /*transform: scale(0.6);*/
+              opacity: 0.2;
+            }
+            35% {
+              /*transform: scale(1.2);*/
+              opacity: 1;
+            }
+            75%{
+              transform:scale(1);
+              opacity: 1;
+            }
+            100% {
+              transform: scale(1);
+              opacity: 0;
+            }
+          }
+          @keyframes bounce-out {
+            0% {
+              transform: scale(1);
+              opacity: 0;
+            }
+            50% {
+              transform: scale(1.5);
+              opacity: 0;
+            }
+            100% {
+              transform: scale(0);
+              opacity: 0;
+            }
+          }
+          .countING{
+            display: inline-block;
+            transform: scale(0.5,0.5);
+            position: absolute;
+            top: 7px;
+            left: 32%;
+          }
+          .countDown{
+            display: inline-block;
+            transform: scale(0.5,0.5);
+            position: absolute;
+            top: 7px;
+            left: 32%;
+          }
+          #container{
+             width: 100%;
+             height: 100%;
+          }
+        #boxContent{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 30px;
+            background: #fff;
+            color: #000;
+            text-align: center;
+            line-height: 30px;
+            z-index: 999;
+            margin-left: -188px;
+            display: none;
+        }
+        /*设置切换箭头样式*/
+        .custom-next::after{
+              content: '';
+              background-image: url(images/right.png);
+              background-size: contain;
+              background-repeat: no-repeat;
+              position: absolute;
+              display: block;
+              width: 42px;
+              height: 30px;
+              z-index: 1000;
+              top: 2px;
+              left: 42%;
+        }
+        .custom-next.active::after{
+             content: '';
+             background-image: url(images/rightAct.png);
+             background-size: contain;
+             background-repeat: no-repeat;
+             position: absolute;
+             display: block;
+             width: 42px;
+             height: 30px;
+             z-index: 1000;
+             top: 2px;
+             left: 42%;
+        }
+        .custom-previous::after{
+               content: '';
+               background-image: url(images/left.png);
+               background-size: contain;
+               background-repeat: no-repeat;
+               position: absolute;
+               display: block;
+               width: 42px;
+               height: 30px;
+               z-index: 1000;
+               top: 2px;
+               left: 6px;
+          }
+          .custom-previous.active::after{
+              content: '';
+              background-image: url(images/leftAct.png);
+              background-size: contain;
+              background-repeat: no-repeat;
+              position: absolute;
+              display: block;
+              width: 42px;
+              height: 30px;
+              z-index: 1000;
+              top: 2px;
+              left: 6px;
+          }
+        </style>
+    </head>
+    <body>
+    <div id="container" style="height:100%;"></div>
+    <div id="panel"></div>
+    <div id="app">
+      <div id="showDet" class="count_div">
+           <div  v-bind:style="styleObjTop"><span style="background:url(images/main/GPS.png) no-repeat; display:inline-block;width: 16px;height: 11px;background-size: contain;"></span>建议开启GPS定位以获取更准确的数据 </div>
+
+      </div>
+      <div class="hint" v-bind:style="styleObj" transition="bounce" v-show="show" v-html="hintHtml"> </div>
+
+      <down-component></down-component>
+      <!-- <switch-component></switch-component> -->
+      <my-component></my-component>
+      <reset-component></reset-component>
+      <quite-component></quite-component>
+    </div>
+    <template id="quite">
+        <a :style="quiteStyle" @click="back"><img src="images/quite.png"></a>
+    </template>
+    <template id="download">
+        <a :style="arrowStyle"><span class="mui-icon mui-icon-arrowthindown" style="font-weight: 600;"></span></a>
+    </template>
+    <template id="switch">
+      <div :style="s_obj">位置共享</div>
+      <div v-bind:style="switchObj">
+
+        <div class="mui-switch mui-switch-blue mui-active" @click="startLoop">
+          <div class="mui-switch-handle"></div>
+        </div>
+      </div>
+    </template>
+    <template id="btn">
+    <form class="mui-input-group" v-bind:style="inputObject">
+      <div class="mui-input-row" v-bind:style="formDiv">
+        <label style="color:#a6a6a6;font-size: 13px;padding: 10px 5px;width:24%;white-space: nowrap;">当前位置:</label>
+        <div   style="font-size: 13px;height:33px;line-height:31px;float:left;width: 72%;padding-right: 0;margin-left: 9px;" > {{ inputdata }}&nbsp;&nbsp;{{ distance }} <sup id="getPoint" style="float: right;top:1px;display: none;"><img src="images/daka.png" style="width: 14px;"></sup></div>
+      </div>
+    </form>
+    <div class="mui-content-padded" style="position: fixed;bottom:44px;">
+       <ul class="mui-pager">
+         <li class="custom-previous" style="position: fixed;left: 1px;width: 40px;" @click="prev">
+
+         </li>
+         <li class="custom-next" style="position: fixed;right: -3px;width: 40px;" @click="next">
+
+         </li>
+       </ul>
+     </div>
+     <div  v-bind:style="styleObject" v-on:click="down" >打卡</div>
+
+    </template>
+    <template id="reset">
+        <a :style="resetStyle" @click="reset"><img src="images/reset.png"></a>
+    </template>
+    <div id="boxContent">打卡成功</div>
+    </body>
+    <script>
+
+       var startPoint,currentPoint; //  起始位置，当前位置
+       var  a = 0;  // 判断执行到了第几次 定位
+       var flag = true;  //手动设定地理定位 间隔
+       var geolocation; // 地图定位
+       var insideBl = [false,false]; // 判断是否在绿道内
+       var  totalDis = 0; // 前一次里程长度
+       var  insideDis = 0; // 绿道内里程
+       var outsideDis = 0; // 总里程
+       var start,before;
+       var phmsg= location.href.split("?")[1].split("&")[0].split("=")[1].split("#")[0];
+       var phone = phmsg?phmsg:456456;
+       console.log(phone);
+       var patrolList = JSON.parse(localStorage.patrolList);
+       var st; //定时器
+       var n = 0;
+       localStorage.update = false;
+       console.log(patrolList);
+
+       // console.log(patrolList);
+       // console.log(phone);
+       $("#btn").on('tap',function(){
+            start = new Date(); // 启动计数后的当前时间之后的开始时间。
+            before = start;
+       })
+      // function renderLoop(){
+      //    var now = new Date();
+      //    var diff = now - before;
+      //    var countTime = now - start;
+      //    if(diff >= 1000){
+      //      console.log(diff);
+      //      before = now;
+      //      var showTime = new Date();
+      //      showTime.setTime(countTime + 3600000*16);
+      //      var showStr = showTime.Format("hh:mm:ss");
+      //      console.log(showStr);
+      //     // var sec = countTime.getSeconds();
+      //      console.log(countTime);
+      //      vm1.time = showStr;
+      //    }
+      //    if(countTime%15000 < 10 && flag){
+      //       a++;
+      //       flag = false;
+      //       console.log(a);
+      //       console.log(countTime);
+      //       geolocation.getCurrentPosition();
+      //    }else if(countTime%15000 >=1000){
+      //       flag = true;
+      //    }
+
+      //    handle = requestAnimationFrame(renderLoop);
+      // }
+
+    </script>
+    <!-- 计数提示代码 -->
+    <script>
+
+    </script>
+    <!-- 高德地图代码 -->
+    <script>
+    var prevPosition;
+
+    //解析定位结果
+    function onComplete(data) {
+        var str=['定位成功'];
+        str.push('经度：' + data.position.getLng());
+        str.push('纬度：' + data.position.getLat());
+        var lng = data.position.getLng()
+        var lat = data.position.getLat()
+        var sumlong=lng
+        console.log(str);
+        // 设置缩放级别和中心点
+        map.setZoomAndCenter(14, [lng,lat ]);
+        map.clearMap();
+        // 在新中心点添加 marker
+        var marker = new AMap.Marker({
+            map: map,
+            icon:new AMap.Icon({
+                image:"images/marker.png",
+                size:new AMap.Size(62,96),
+                imageSize:new AMap.Size(31,48)
+            }),
+            position: [lng, lat]
+        });
+        var now = (new Date()).Format("yyyy-MM-dd hh:mm:ss");
+        console.log(typeof now);
+
+        var lnglat = new AMap.LngLat(lng, lat);
+
+        var prevDistance = '0';
+        console.log(prevPosition);
+        if(prevPosition != undefined){
+           prevDistance = lnglat.distance([prevPosition.I,prevPosition.M]);
+        }
+        // alert(prevDistance);
+        var Json = {
+             "phone": phone,
+             "longitude":lng,
+             "latitude":lat,
+             "createtime":now,
+             "usertype":localStorage.userType,
+             "sumlen":prevDistance
+
+        }
+        console.log(Json);
+
+        var distanceArr = [];
+        for(var i=0;i<patrolList.length;i++){
+            var pointLng = parseFloat(patrolList[i].Longitude);
+            var pointLat = parseFloat(patrolList[i].latitude);
+            var distance = lnglat.distance([pointLng,pointLat]);
+            patrolList[i].distance = distance;
+        }
+        console.log(patrolList);
+        // 设置切换按钮样式这是
+        if(patrolList.length>0){
+            $("li.custom-next").addClass('active');
+        }
+        var inputD = app.$children[1].$data;
+        console.log(app.$children[1].$data);
+        inputD.inputdata = inputD.inputdata.split(" ")[0];
+        Json.patrolid = patrolList[inputD.listId].id;
+        console.log(Json);
+        if(inputD.inputdata.length>0){
+
+        }else{
+          var current = new Date().toLocaleDateString();
+
+          if(patrolList[0].getPoint && patrolList[0].getPoint.split(":")[0] == current && patrolList[0].getPoint.split(":")[1] == 'true'){
+             $("sup#getPoint").show();
+          }else{
+             $("sup#getPoint").hide();
+          }
+          inputD.inputdata = patrolList[0].name.split("(")[0];
+        }
+        if(parseInt(patrolList[inputD.listId].distance)<60){
+           inputD.styleObject.background ="#40b2e6";
+           inputD.styleObject.color =  "#eee";
+        }else{
+           inputD.styleObject.background ="grey";
+           inputD.styleObject.color =  "white";
+        }
+        // inputD.inputdata = " {&nbsp;} " +parseInt(patrolList[inputD.listId].distance) +"米";
+        inputD.distance = parseInt(patrolList[inputD.listId].distance) + "米";
+        if(localStorage.update == "true"){
+          console.log("true");
+           Vue.http.post("/wxsend",Json).then(function(response){
+                console.log(response);
+                console.log("post");
+             }),(function(response){
+                console.log("err");
+             })
+             localStorage.update  = 'false';
+             st = setInterval("getCurrentPos()",60000);
+        }
+
+        if(sessionStorage.daka == "true"){
+          prevPosition =  lnglat;
+          console.log(prevPosition);
+          sessionStorage.daka = "false";
+        }
+    }
+
+    //解析定位错误信息
+    function onError(data) {
+        console.log('定位失败');
+
+    }
+
+    var map = new AMap.Map('container', {
+         resizeEnable:true,
+         center: [114.396568,30.544318],
+         zoom: 11
+     });
+
+    map.plugin('AMap.Geolocation',function() {
+        geolocation = new AMap.Geolocation({
+              enableHighAccuracy:true,
+              timeout:10000,
+              zoomToAccuracy:true
+        });
+        // map.addControl(geolocation);
+        // geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation,'complete',onComplete);
+        AMap.event.addListener(geolocation,'error',onError);
+    });
+
+     map.setFitView();
+
+    </script>
+    <!-- vue代码 -->
+    <script>
+    st = setInterval("getCurrentPos()",60000);//定时器
+    function getCurrentPos(){
+          geolocation.getCurrentPosition();
+    }
+    setTimeout("getCurrentPos()",5500);
+
+    var _reset = Vue.extend({
+        template:'#reset',
+        data:function(){
+            return {
+               resetStyle:{
+                   position:'fixed',
+                   bottom:'72px',
+                   right:'9px',
+                   color:'black'
+               }
+            }
+        },
+        methods:{
+            reset:function(){
+              geolocation.getCurrentPosition();
+                app.show = !app.show;
+                if(app.show == false){
+                    clearTimeout(sstt);
+                    return;
+                }else{
+                  sstt = setTimeout(function(){
+                     app.show = false;
+                  },5500);
+                }
+
+                app.hintHtml=`<span>正在重新获取你的位置,请稍等...</span>`
+            }
+        }
+    })
+    var quite_com = Vue.extend({
+        template:'#quite',
+        data:function(){
+             return {
+                quiteStyle:{
+                  position:'fixed',
+                  right:'13px',
+                  top:'41px',
+                  color:'black',
+                  zIndex:1000
+                }
+             }
+        },
+        methods:{
+             back:function(){
+                 console.log("back");
+                 localStorage.removeItem("loginMes");
+                 console.log(localStorage);
+                 location.href = "login.html?v=" + Math.random();
+             }
+        }
+    })
+    var download = Vue.extend({
+        template:'#download',
+        data:function(){
+            return {
+               arrowStyle:{
+                   position:'fixed',
+                   borderRadius:'50%',
+                   border:'1px solid black',
+                   left:'22px',
+                   top:'42px',
+                   color:'black',
+                   zIndex:1000
+               }
+            }
+        }
+    })
+    var sw_comp = Vue.extend({
+         template:'#switch',
+         data:function(){
+             return {
+                switchObj:{
+                   position:'fixed',
+                   bottom:'68px',
+                   left:'42px',
+                   transform:'scale(0.58,0.68)'
+                },
+                s_obj:{
+                  position:'fixed',
+                  fontSize:'13px',
+                  textAlign:'left',
+                  height:'29px',
+                  width:'62px',
+                  left:'4px',
+                  bottom:'64px',
+                  background:'white'
+                }
+             }
+         },
+         methods:{
+              startLoop:function(event){
+                 var sw = document.querySelector("div.mui-switch-blue");
+                 var classname = sw.className.split(" ");
+                 console.log(classname);
+
+                 // if(classname.length>2){
+                 //     console.log("start loop");
+                 //     st = setInterval("getCurrentPos()",60000);
+                 // }else{
+                 //     console.log("stop");
+                 //     window.clearInterval(st);
+                 // }
+
+                // geolocation.getCurrentPosition();
+              }
+         }
+    });
+    var vm2 = Vue.extend({
+         template:"#btn",
+         data:function(){
+            return{
+              styleObject:{
+                 position:'fixed',
+                 bottom:'1px',
+                 borderRadius:'5px',
+                 padding:'7px 40px',
+                 right:'95px',
+                 left:'95px',
+                 zIndex:1000,
+                 background:"grey",
+                 color:'white'
+              },
+              inputObject:{
+                position:'fixed',
+                bottom:'37px',
+                height:'33px',
+                left:'8%',
+                zIndex:1000,
+                width:'85%'
+              },
+              postData:{
+                phone:'',
+                longitude:'',
+                latitude:'',
+                createtime:''
+              },
+              inputdata:'',
+              distance:'',
+              done:true,
+              text:'开始计数',
+              listId:0
+            }
+         },
+         methods:{
+              down:function(event){
+                var  distance = parseInt(patrolList[this.$data.listId].distance);
+
+
+                // console.log(sessionStorage.daka)
+                if(distance<60){
+                  sessionStorage.daka = "true";
+                  console.log($("sup#getPoint"));
+                   setTimeout(function(){
+                      $("sup#getPoint").show();
+                   },1500);
+                   var now = new Date().toLocaleDateString();
+                   patrolList[this.$data.listId].getPoint = now + ':true';
+
+                   localStorage.patrolList = JSON.stringify(patrolList);
+                }else{
+                  console.log("out of rang");
+                  return;
+                }
+                // $("#boxContent").show();
+                // setTimeout(function(){
+                //      $("#boxContent").hide()
+                //   },4000);
+                console.log(this.$data.inputdata.split(" ")[1]);
+                localStorage.update = true;
+                clearInterval(st);
+                geolocation.getCurrentPosition();
+                app.hint='';
+                app.styleObj.background = '';
+                app.styleObj.top = '28%';
+                app.hintHtml = `<img src="images/daka-suc.png" />`
+                app.show = !app.show;
+
+                var txt =  this.$data
+                console.log(txt);
+                if(txt.inputdata.trim()>0){
+                }else{
+                  txt.inputdata = patrolList[this.$data.listId].name.split("(")[0];
+                }
+                if(app.show == false){
+                    app.styleObj.background ='rgba(102, 102, 102, 0.77)';
+                    app.styleObj.top = '46%';
+                   clearTimeout(sto);
+                   return;
+                }else{
+                  sto = setTimeout(function(){
+                     app.show = false;
+                     app.styleObj.background ='rgba(102, 102, 102, 0.77)';
+                     app.styleObj.top = '46%';
+                  },5500);
+                }
+
+              },
+              prev:function(){
+                 console.log("prev");
+                 // 设置切换箭头样式
+                 if($("li.custom-next").hasClass('active')){
+
+                 }else{
+                    $("li.custom-next").addClass('active');
+                 }
+                 if(this.$data.listId == 1){
+                     console.log(this.$data.listId);
+                     $("li.custom-previous").removeClass('active');
+                 }
+
+                 if(this.$data.listId > 0){
+                    var  preDistance = parseInt(patrolList[this.$data.listId-1].distance)
+                    console.log(preDistance);
+                 }
+                 if(this.$data.listId <= 0 || this.$data.inputdata.trim().length == 0){
+                    console.log("head");
+                    return;
+                 }
+                 var current = new Date().toLocaleDateString();
+                 if(patrolList[this.$data.listId-1].getPoint && patrolList[this.$data.listId-1].getPoint.split(":")[0]== current &&patrolList[this.$data.listId-1].getPoint.split(":")[1] == 'true'){
+                    $("sup#getPoint").show();
+                 }else{
+                    $("sup#getPoint").hide();
+                 }
+                 if( preDistance&&preDistance <60){
+                    console.log("changecolor");
+                     this.$data.styleObject.background ="#40b2e6";
+                     this.$data.styleObject.color =  "#eee";
+
+                 }else{
+                    this.$data.styleObject.background ="grey";
+                    this.$data.styleObject.color =  "white";
+                 }
+
+                 this.$data.listId--;
+                 this.$data.inputdata = patrolList[this.$data.listId].name.split("(")[0];
+                 if(patrolList[this.$data.listId].distance){
+                   this.$data.distance =  parseInt(patrolList[this.$data.listId].distance) +"米";
+                 }
+
+              },
+              next:function(){
+                 console.log("next");
+                 var distance  =  this.$data.inputdata.split(" ");
+                 // 设置切换箭头样式
+                 if($("li.custom-previous").hasClass('active')){
+
+                 }else{
+                    $("li.custom-previous").addClass('active');
+                 }
+                 if(this.$data.listId == patrolList.length - 2){
+                     console.log(this.$data.listId);
+                     $("li.custom-next.active").removeClass('active');
+                 }
+
+                 if(this.$data.listId >= (patrolList.length-1) || this.$data.inputdata.trim().length == 0){
+                     console.log("end");
+                    return;
+                 }
+                 if(this.$data.listId < (patrolList.length-1)){
+                    var  nextDistance = parseInt(patrolList[this.$data.listId+1].distance)
+                    console.log(nextDistance);
+                 }
+                 var current = new Date().toLocaleDateString();
+                 if( patrolList[this.$data.listId+1].getPoint && patrolList[this.$data.listId+1].getPoint.split(":")[0] == current  && patrolList[this.$data.listId+1].getPoint.split(":")[1] == 'true'){
+                    $("sup#getPoint").show();
+                 }else{
+                    $("sup#getPoint").hide();
+                 }
+                 if(nextDistance&&nextDistance<60){
+                     console.log("changecolor");
+                     this.$data.styleObject.background ="#40b2e6";
+                     this.$data.styleObject.color =  "#eee";
+                 }else{
+
+                    this.$data.styleObject.background ="grey";
+                    this.$data.styleObject.color =  "white";
+                 }
+
+                 this.$data.listId++;
+                 this.$data.inputdata = patrolList[this.$data.listId].name.split("(")[0];
+                 if(patrolList[this.$data.listId].distance){
+                   this.$data.distance  = parseInt(patrolList[this.$data.listId].distance) +"米"
+                 }
+
+              }
+         },
+         component: {
+
+         }
+    })
+    // var Child = Vue.extend({
+    //        template: '<p>This is a child component!</p>'
+    //    })
+
+    //  var Parent = Vue.extend({
+    //      // 在Parent组件内使用<child-component>标签
+    //      template :'<p>This is a Parent component</p><child-component></child-component>',
+    //      components: {
+    //          // 局部注册Child组件，该组件只能在Parent组件内使用
+    //          'child-component': Child
+    //      }
+    //  })
+    // Vue.component('parent-component',Parent);
+    Vue.component('my-component',vm2);
+    // Vue.component('switch-component',sw_comp);
+    Vue.component('down-component',download);
+    Vue.component('reset-component',_reset);
+    Vue.component('quite-component',quite_com);
+    var app = new Vue({
+        el:"#app",
+        data:{
+           count:false,
+           time:'00:00:00',
+           total:'0.00km',
+           inside:'0.00km',
+           isA: false, //启动计数 和完成计数样式变化
+           hint:'温馨提示:正在上报你的当前位置，请稍等...',
+           hintHtml:`<span>温馨提示:正在上报你的当前位置，请稍等...</span>`,
+           styleObj:{
+               position:'absolute',
+               top:'46%',
+               left:'5%',
+               padding:'9px',
+               textAlign:'center',
+               fontSize:'13px',
+               width:'90%',
+               borderRadius:'2px',
+               background:'rgba(102, 102, 102, 0.77)',
+               color:'#efefef'
+           },
+           styleObjTop:{
+              position:'fixed',
+              top:'0',
+              left:'0',
+              padding:'8px',
+              textAlign:'center',
+              fontSize:'13px',
+              width:'100%',
+              background:'rgba(102, 102, 102, 0.77)',
+              color:'#efefef'
+           },
+
+           first:false,
+           show:false //提示显示切换
+        }
+    });
+
+    function postResult(Mil,tMil){
+      console.log("result");
+        $.ajax({
+            type: "get",
+            url:  "/step/savestep",
+            data:{
+                userid: sessionStorage.userId,
+                username: sessionStorage.userName,
+                stepsum:tMil,
+                steplake:Mil
+            },
+            contentType: "application/json;charset=UTF-8",
+            dataType:"json",
+            success:function(data){
+                console.log(data);
+                sessionStorage.reload = true;
+                // vm.items = data.items;
+                // vm.userId = data.userId;
+                // vm.userName = data.userName;
+                // vm.rank = data.rank;
+                // vm.mileage = data.mileage;
+                // vm2.userName = data.items[0].userName;
+                // vm2.mileage = data.items[0].mileage;
+                // example3.$data = data;
+                // console.log(example3.$data);
+                // fnHashTrigger(query);
+                // var t= setTimeout(function(){
+                //    lag =  true;
+                // },1500)
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    }
+  </script>
+  <script src="js/MUI.min.js"></script>
+</html>
