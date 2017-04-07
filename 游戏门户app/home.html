@@ -1,0 +1,899 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>霸气游戏878.com</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--mui.css-->
+		<!-- <link rel="stylesheet" href="css/MUI.min.css"> -->
+		<link rel="stylesheet" href="css/Style.css">
+		<link rel="stylesheet" href="css/recommend.css">
+		<link rel="stylesheet" href="css/consult.css">
+		<link rel="stylesheet" href="css/gameDetail.css">
+		<link rel="stylesheet" href="css/userPage.css">
+		<link rel="stylesheet" href="css/gamePage.css">
+		<link rel="stylesheet" href="css/homePage.css">
+		<link rel="stylesheet" href="css/reg_login.css">
+
+		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="css/gift.css">
+
+		<script>
+			var check_lgB = true;
+			var startX, endX,end;
+		</script>
+		<script src="js/MUI.min.js"></script>
+		<script src="js/mui.enterfocus.js"></script>
+
+	<!-- 	<script src="js/browser.js"></script> -->
+		<script src="js/jQuery-2.2.1.min.js"></script>
+		<script src="homePage.es5.js"></script>
+		<!-- <script src="secondPage.es5.js"></script> -->
+
+<!-- 		<script src="js/recommend.js"></script> -->
+
+		<link rel="stylesheet" href="Fonts/fonts.css">
+
+		<style>
+			#navi ul li{
+				width: 31.03%;
+				display: inline-table;
+				text-align: center;
+				margin-bottom: 10px;
+				list-style: none;
+			}
+			#navi a {
+				 display: inline-block;
+				 height: 72px; width: 72px;
+			 	 padding-top: 72px;
+		 	 	 background:url(images/gamePic/chan200.jpg) no-repeat;
+		 	 	 background:url(images/57e09a1a0e32d.png) no-repeat;
+		 	 	 background:url(images/baye.jpg) no-repeat;
+				 background-position: 50% 50%;
+				 background-size:contain ;
+			}
+			#navi li:nth-child(2) a{
+				background:url(images/gamePic/chan201.png);
+				background:url(images/57b42b5bf282c.png);
+				background:url(images/fentian.png);
+				 background-position: 50% 50%;
+				 background-size:contain ;
+			}
+			#navi li:nth-child(3) a{
+				background:url(images/gamePic/chan202.png);
+				background:url(images/57c5556621c1f.png);
+				background:url(images/fbys.png);
+				 background-position: 50% 50%;
+				 background-size:contain ;
+			}
+			#navi li:nth-child(4) a{
+				background:url(images/gamePic/chan203.png);
+				background:url(images/57e1f083a5a2a.png);
+				background:url(images/wdqk.png);
+				 background-position: 50% 50%;
+				 background-size:contain ;
+			}
+			#navi li:nth-child(5) a{
+				background:url(images/gamePic/chan204.png);
+				 background-position: 50% 50%;
+				 background-size:contain ;
+			}
+			#navi li:nth-child(5) a{
+				background:url(images/yjmt.png);
+				 background-position: 50% 50%;
+				 background-size:contain ;
+			}
+			#navi a span{
+				 display: block; color: #000;
+				 font-size: 14px;
+			}
+
+
+
+			/*开服状态 样式*/
+			ul,ol,ul{
+				list-style: none;
+			}
+			ul.kfdt_ul{
+				margin:0;
+				padding: 0;
+			}
+			.kfdt-ul{
+				margin-top: 1px;
+				overflow: hidden;
+			}
+			.kfdthead {
+				height: 31px;
+				background: url(images/kfheadbg.jpg) left center repeat-x;
+				padding: 0 2%;
+				list-style: none;
+			}
+			.kfdthead dl{
+				height:31px;
+				width: 100%;
+				margin:0;
+				display: inline-block;
+			}
+			.kfdthead dl .dd01 {
+				width: 10%;
+			}
+			.kfdthead dl .dd02 {
+				width: 58%;
+			}
+			.kfdthead dl .dd03 {
+				width: 12%;
+				margin-left:  2%;
+			}
+			.kfdthead dl .dd04 {
+				width: 10%;
+				margin-left: 8%;
+			}
+			.kfdtli {
+				background-color: #fff;
+				    padding: 2%;
+				    border-bottom: 1px solid #e4edef;
+				    list-style: none;
+			}
+			.kfdtli dl {
+				width: 100%;
+				overflow: hidden;
+				margin: 0;
+			}
+			.kfdtli dl dd {
+				float: left;
+				text-align: center;
+				color: #131313;
+				font-size: 14px;
+				vertical-align: middle;
+				margin: 0;
+			}
+			.kfdtli dl .dd01 {
+				width: 14%;
+				padding-top: 1.5%;
+			}
+			.kfdtli dl .dd02 {
+				width: 56%;
+				padding-top: 1.5%;
+			}
+			.kfdtli dl .dd03{
+				width: 8%;
+				margin-top: 1%;
+				margin-left: 2%;
+			}
+			.kfdtli dl .dd03 img,
+			.kfdtli dl .dd04 img{
+				width: 100%;
+				display: block;
+			}
+			.kfdtli dl .dd04{
+				width: 10%;
+				margin-left: 10%;
+			}
+			.kfdthead dl dd{
+				height: 31px;
+				line-height: 31px;
+				text-align: center;
+				color: #797c7d;
+				font-size: 14px;
+				float: left;
+				margin:0;
+			}
+
+			/*游戏排行*/
+			.ph_ul{
+				margin-top: 1px;
+				overflow: hidden;
+				margin-bottom: 2%;
+				padding: 0;
+			}
+			.phhead {
+				height: 31px;
+				    background: url(images/kfheadbg.jpg) left center repeat-x;
+				    padding: 0 2%;
+				list-style: none;
+			}
+			.phhead dl{
+				height: 31px;
+				width: 100%;
+				margin: 0;
+				display: inline-block;
+			}
+			.phhead dl dd{
+			    height: 31px;
+			    line-height: 31px;
+			    text-align: center;
+			    color: #797c7d;
+			    font-size: 14px;
+			    float: left;
+			    margin: 0;
+			}
+			.phhead dl .dd01{
+				width: 9%;
+			}
+			.phhead dl .dd02{
+				width: 50%;
+			}
+			.phhead dl .dd03{
+				width: 25%;
+			}
+			.phhead dl .dd04{
+				width: 16%;
+			}
+			.phli {
+				background-color: #fff;
+				    padding: 2%;
+				    border-bottom: 1px solid #e4edef;
+				    list-style: none;
+
+			}
+			.phli dl{
+				width: 100%;
+				overflow: hidden;
+				margin: 0;
+			}
+			.phli dl dd{
+				float: left;
+				font-size: 14px;
+				vertical-align: middle;
+				margin: 0;
+			}
+			.phli dl .dd01{
+				width: 9%;
+			}
+
+			.phli dl .dd01 img,
+			.phli dl .dd04 img{
+				width: 100%;
+				display: block;
+			}
+			.phli dl .dd02{
+				width: 42%;
+				margin-left: 10%;
+			}
+			a.yxphicon_a{
+				width: 20%;
+				overflow: hidden;
+			}
+			.db{
+				display: block;
+			}
+			.fl{
+				float: left;
+			}
+			a.yxphicon_a img{
+				width: 100%;
+			}
+			.yxph_r{
+				width: 75%;
+				margin-left: 5%;
+				overflow: hidden;
+				display: inline-block;
+			}
+			.yxphname_p{
+				height: 18px;
+				line-height: 18px;
+				color: #131313;
+				font-size: 12px;
+				text-align: left;
+				margin: 0
+			}
+			.yxphinfo_p{
+				height: 18px;
+				line-height: 18px;
+				color:#787e80;
+				font-size: 10px;
+				text-align: left;
+				margin: 0;
+			}
+			.phli dl .dd03{
+				width: 23%;
+				text-align: center;
+				color:#fd550b;
+				margin-top: 2%;
+			}
+
+			.phli dl .dd04{
+				width: 14%;
+				margin-left: 2%;
+			}
+
+			/*礼包领取*/
+			.libaoul{
+				width: 90%;
+				margin: 0 auto;
+				min-height: 400px;
+				overflow: hidden;
+				padding: 0;
+			}
+			.libaoul li{
+				margin-bottom: 0.6em;
+				border-radius: 3px;
+				border:1px solid #e1e1e1;
+				padding: 2%;
+				overflow: hidden;
+				background: #629721;
+				background-image: -webkit-linear-gradient(top, #ffffff, #dedede);
+				box-shadow: :inset 0px 0 1px #fff;
+				list-style: none;
+			}
+			.lbyxicon{
+				width: 25%;
+				overflow: hidden;
+			}
+			.lbyxicon img{
+				display: block;
+				width: 100%;
+			}
+			.lbinfo_div{
+				width: 48%;
+				margin: 3% 2% 0;
+			}
+			.lbyxname{
+				height: 24px;
+				color: #131313;
+				font-size: 90%;
+				line-height: 24px;
+				white-space: nowrap;
+			}
+			.lbyxinfo_p{
+				line-height: 18px;
+				color:#666;
+				font-size: 60%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.lbyxinfo_p2{
+				line-height: 18px;
+				color: #ff0303;
+				font-size: 60%;
+				margin-top: 3px;
+			}
+			.jdtdi {
+				display: inline-block;
+				margin-right: 3px;
+				width: 60px;
+				height: 6px;
+				font-size: 0;
+				line-height: 6px;
+				overflow: hidden;
+				background: #9f9f9f;
+				background-image: -webkit-linear-gradient(top, #c3c3c3, #9f9f9f);
+			}
+			.pr {
+				position: relative;
+			}
+			.jdtdiv {
+				height: 6px;
+				font-size: 0;
+				line-height: 6px;
+				background: #27acef;
+				background-image: -webkit-linear-gradient(top, #00dfff, #27acef);
+			}
+			.jdword {
+				color: #ff0303;
+				font-size: 10px;
+			}
+			a.lbdl_a{
+				width: 22%;
+				margin-top: 13%;
+				color: #555758;
+				font-size: 13px;
+				text-align: center;
+				height: 36px;
+				line-height: 36px;
+				background-color: #fff;
+				border: 1px solid #c2d6db;
+				border-radius:5px;
+			}
+			.fr{
+				float: right;
+			}
+			a.ckgd_a{
+				width: 65%;
+				height: 18px;
+				line-height: 18px;
+				margin: 0 auto 18%;
+				padding-top: 18px;
+				text-align: center;
+				background: url(images/ckgdarrow.png) center top no-repeat;
+				background-size: 24px 14px;
+				color: #131313;
+				font-size: 100%;
+			}
+
+
+
+			/*自定义轮播*/
+			.swiper-container {
+				margin: 0 auto;
+				position: relative;
+				overflow: hidden;
+				z-index: 1;
+				height: 106px;
+				top: 9px;
+			}
+			.swiper-container > .swiper-pagination {
+				bottom: 13px;
+				left: 0;
+				width: 100%;
+			}
+			.swiper-pagination {
+				position: absolute;
+				text-align: center;
+				transition: 300ms;
+				transform: translate3d(0,0,0);
+				z-index: 10;
+			}
+			.swiper-pagination-bullet{
+				width: 8px;
+				height: 8px;
+				display: inline-block;
+				border-radius: 100%;
+				background: #000
+				opacity:0.2;
+
+			}
+			.swiper-pagination-bullet.swiper-pagination-bullet-active{
+				opacity: 1;
+				background: #007aff;
+			}
+			.swiper-wrapper{
+				position: relative;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+				display: -o-flex;
+				display: flex;
+				transform-style: preserve-3d;
+				transition-property: transform;
+				box-sizing: content-box;
+			}
+			.sx-table-row{
+				position: relative;
+				width: 49%;
+				padding: 0;
+				margin: 0;
+				border:  0;
+				box-sizing: border-box;
+				border-collapse: collapse;
+				display: table;
+				table-layout: fixed;
+				margin-right: 22px;
+			}
+			.sx-table-pic{
+				width: 80%;
+				min-width: 95px;
+			}
+			.sx-table-pic .sx-product-image{
+				max-height: 170px;
+				padding: 0;
+				margin: 0;
+				border:0;
+				display: inline-block;
+				max-width: 110%;
+			}
+
+			/*礼包领取提示*/
+			.xskdiv {
+				background-color: #f2f2f2;
+				width: 280px;
+				height: 140px;
+				position: fixed;
+				left: 50%;
+				top: 50%;
+				margin-left: -140px;
+				margin-top: -120px;
+				border-radius: 5px;
+				z-index: 10000;
+			}
+			.pa{
+				position: absolute;
+			}
+			.dn{
+				display: none;
+			}
+			a.closebtn{
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				/*color: #383838;*/
+				right: 5px;
+				top: 5px;
+				background: url(images/close.png) no-repeat;
+				background-size: contain;
+			}
+			.lbxlh_p{
+				text-align: center;
+				line-height: 30px;
+				color: #383838;
+				font-size: 14px;
+				margin-top: 40px;
+				padding: 0 10px;
+			}
+			.wxtips_p{
+				text-align: center;
+				line-height: 30px;
+				font-size: 12px;
+				margin-top: 5px;
+				color: #f00;
+			}
+
+			/*底部栏图片*/
+
+			.mui-bar-tab .mui-tab-item.mui-active{
+				color:#3796ea;
+			}
+			.ch-size img{
+				width: 70% !important;
+				    margin-left: 11%;
+			}
+			/*游戏页面 五角星*/
+			.youxiname img{
+				    width: 10%;
+                          padding-top: 3px;
+			}
+			/*游戏下载按钮*/
+			#navi .gay-home-btn{
+				background-color:#5CACEE;
+				color: white;
+			}
+			.gay-input input {
+				    width: 74% !important;
+				    height: 30px !important;
+				    font-family: "微软雅黑";
+			}
+			.rm3_banner{
+				font-family:"Microsoft YaHei";
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" style="    background: #3796ea;">
+			<div id="mainPage" style="display: inline-block;">
+				<div class="pageLogo" style="display: inline-block; float: left;width: 50%;">
+					<a class="mui-pull-left logo_sy">
+						<img src="images/logo.png" >
+					</a>
+				</div>
+
+				<div class="userdiv	">
+					<a class=" mui-tab-item" href="#userCenter" style="display: inline-block;width:24%;">
+					  <i class="iconfont" style="    color: white;line-height: 43px;display: inline-block;font-size: 23px;">&#xe607;</i>
+					</a>
+					<a class="mui-tab-item   userName customColor" href="#userCenter">
+						<span class="bl rel conHeight">用户中心</span>
+					</a>
+				</div>
+			</div>
+
+			<div id="userPage" style="display: none;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+				<h1 class="mui-title" style="color:#fff;">注册登陆</h1>
+			</div>
+
+		</header>
+		<nav class="mui-bar mui-bar-tab custom-nav-shadow" >
+			<a class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-icon mui-icon-home" style="transform: scale(1.1);"></span>
+				<span class="mui-tab-label" >首页</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-chat" >
+				<i class="iconfont" style="font-size: 26px;position: relative;top: 4px;">&#xe636;</i>
+				<div class="mui-tab-label" style="font-size: 13px;">礼包</div>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-contact">
+				<i class="iconfont" style="font-size: 26px;position: relative;top: 4px;">&#xe6d3;</i>
+				<div class="mui-tab-label" style="font-size: 13px;">游戏</div>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-map" style="transform: scale(1.1);">
+				<i class="iconfont" style="font-size: 21px;position: relative;top: 5.5px;display: block;">&#xe605;</i>
+				<span class="mui-tab-label" style="font-size: 12px;">资讯</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-recommend" style="transform: scale(1.1);">
+			<i class="iconfont" style="font-size: 23px;position: relative;top: 4px;display: block;">&#xe68b;</i>
+				<span class="mui-tab-label" style="font-size:12px;">推荐</span>
+			</a>
+		</nav>
+		<div class="mui-content" style="background-color: #fdfdfd;">
+			<div id="userCenter" class="mui-control-content">
+				<script>
+					// $("#userCenter").append(userHtml);
+				</script>
+			</div>
+			<div id="userReg" class="mui-control-content">
+				<script>
+					// $("#userReg").append(reg);
+				</script>
+			</div>
+
+			<div id="tabbar" class="mui-control-content mui-active">
+			<script>
+				$("#tabbar").append(html1);
+			</script>
+
+			</div>
+			<div id="tabbar-with-chat" class="mui-control-content">
+				<script>
+					// $("#tabbar-with-chat").append(package);
+				</script>
+
+			</div>
+			<div id="tabbar-recommend" class="mui-control-content">
+				<script>
+					// $("#tabbar-recommend").append(recoommend);
+				</script>
+			</div>
+			<div id="tabbar-with-contact" class="mui-control-content">
+				<script>
+					// $("#tabbar-with-contact").append(gPage);
+				</script>
+			</div>
+			<div id="tabbar-with-map" class="mui-control-content">
+				<script>
+					// $("#tabbar-with-map").append(consult);
+				</script>
+			</div>
+			<div id="tabbar-game-detail" class="mui-control-content">
+				<script>
+					// $("#tabbar-game-detail").append(gDetail);
+				</script>
+			</div>
+
+			<div id="u_Page" class="mui-control-content">
+				<script>
+					// $("#u_Page").append(userPage);
+				</script>
+			</div>
+
+		<div id="tabbar-childPage" class="mui-control-content">
+			<script>
+				// $("#tabbar-childPage").append(childPage);
+			</script>
+			</div>
+
+		</div>
+		<div class="xskdiv pa dn" id="takecard" >
+		<a href="javascript:;" class="closebtn pa"></a><p class="lbxlh_p">请先登录，再领取礼包</p><p class="wxtips_p">温馨提示：长按礼包序列号即可复制</p>
+		</div>
+		<div class="xskdiv pa dn" id="getIt" >
+		<a href="javascript:;" class="closebtn pa"></a>
+		<div id="gift_pic" style="width: 25%;height: 25px;margin:0 auto;margin-top: 12px;">
+			<img src="images/home/poGift.png" style="width: 100%;">
+		</div>
+		<p class="lbxlh_p" style="color: #e03670;margin-bottom: 0;margin-top: 28px;">恭喜你领取成功！</p>
+		<p class="" style="color:#03a9f4;text-align: center;font-size: 13px;margin-bottom: 0;">礼包码: 449725d069e8ac31</p>
+		<p class="wxtips_p" style="margin-top: 0;">温馨提示：长按礼包序列号即可复制</p>
+		</div>
+		<div class="xskdiv pa dn" id="takeover" >
+		<a href="javascript:;" class="closebtn pa"></a>
+		<div id="gift_fail" style="width: 25%;height: 25px;margin:0 auto;">
+			<img src="images/fail.png" style="width: 100%;">
+		</div>
+		<p class="lbxlh_p">这种礼包已经领取完毕</p><p class="wxtips_p">温馨提示：长按礼包序列号即可复制</p>
+		</div>
+	<script type="text/javascript">
+	function downloadJSAtOnload() {
+	var element11 = document.createElement("script");
+	element11.src = "js/lslider-gxl.js";
+	var element1 = document.createElement("script");
+	element1.src = "userCenter.es5.js";
+	var element2 = document.createElement("script");
+	element2.src = "userReg.es5.js";
+	var element3 = document.createElement("script");
+	element3.src = "recommend.es5.js";
+	var element4 = document.createElement("script");
+	element4.src = "userPage.es5.js";
+	var element5 = document.createElement("script");
+	element5.src = "package.es5.js";
+	var element6 = document.createElement("script");
+	element6.src = "gamePage.es5.js";
+	var element7 = document.createElement("script");
+	element7.src = "gameDetail.es5.js";
+	var element8 = document.createElement("script");
+	element8.src = "consult.es5.js";
+	var element9 = document.createElement("script");
+	element9.src = "childPage.es5.js";
+	var element10 = document.createElement("script");
+	element10.src = "js/app.js";
+
+	var element12 = document.createElement("script");
+	element12.src = "js/changeHash.js";
+	var element13 = document.createElement("script");
+	element13.src = "js/reg_login.js";
+	var element14 = document.createElement("script");
+	element14.src = "js/gift.js";
+	var element15 = document.createElement("script");
+	element15.src = "js/load_more.js";
+
+	document.body.appendChild(element1)
+				      .appendChild(element2)
+				      .appendChild(element3)
+				      .appendChild(element4)
+				      .appendChild(element5)
+				      .appendChild(element6)
+				      .appendChild(element7)
+				      .appendChild(element8)
+				      .appendChild(element9)
+				      // .appendChild(element10)
+				      .appendChild(element11)
+				      .appendChild(element12)
+				      .appendChild(element13)
+				      .appendChild(element14)
+				      .appendChild(element15);
+
+				      element1.onload=element1.onreadystatechange=function(){
+				         if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+				              // alert('done');
+				              $("#userCenter").append(userHtml);
+				     	   }
+				      }
+				       element2.onload=element2.onreadystatechange=function(){
+				          if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+				               // alert('done');
+				               $("#userReg").append(reg);
+				      	   }
+				       }
+			              element11.onload=element11.onreadystatechange=function(){
+			                 if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+			       				var swiper3 = $('div#swiper-3');
+			       				defended(swiper3,startX,endX,end);
+			       				var swiper4 = $('div#swiper-4');
+			       				defended(swiper4,startX,endX,end);
+			             	   }
+			              }
+				        element3.onload=element3.onreadystatechange=function(){
+				           if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+				                // alert('done');
+
+				               $("#tabbar-recommend").append(recoommend);
+				               // var swiper3 = $('div#swiper-3');
+				               // defended(swiper3,startX,endX,end);
+				       	   }
+				        }
+				         element4.onload=element4.onreadystatechange=function(){
+				            if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+				                 // alert('done');
+				                 $("#u_Page").append(userPage);
+				        	   }
+				         }
+				          element5.onload=element5.onreadystatechange=function(){
+				             if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+				                  // alert('done');
+
+				                  $("#tabbar-with-chat").append(package);
+				         	   }
+				          }
+				           element6.onload=element6.onreadystatechange=function(){
+				              if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+				                   // alert('done');
+
+				                   $("#tabbar-with-contact").append(gPage);
+				          	   }
+				           }
+				            element7.onload=element7.onreadystatechange=function(){
+				               if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+				                    // alert('done');
+				                    $("#tabbar-game-detail").append(gDetail);
+				           	   }
+				            }
+				             element8.onload=element8.onreadystatechange=function(){
+				                if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+				                     // alert('done');
+				                     $("#tabbar-with-map").append(consult);
+				                     // var swiper4 = $('div#swiper-4');
+				                     // defended(swiper4,startX,endX,end);
+				            	   }
+				             }
+				              element9.onload=element9.onreadystatechange=function(){
+				                 if(!this.readyState||this.readyState=='loaded'||this.readyState=='complete'){
+				                      // alert('done');
+				                      $("#tabbar-childPage").append(childPage);
+				             	   }
+				              }
+
+
+
+
+
+
+
+
+
+
+
+
+	}
+	if (window.addEventListener)
+	window.addEventListener("load", downloadJSAtOnload, false);
+	else if (window.attachEvent)
+	window.attachEvent("onload", downloadJSAtOnload);
+	else window.onload = downloadJSAtOnload;
+	</script>
+	</body>
+	<!-- <script src="js/packagePullToRe.js"></script> -->
+	<!-- <script src="userCenter.es5.js"></script>
+	<script src="userReg.es5.js"></script>
+	<script src="userPage.es5.js"></script>
+	<script src="recommend.es5.js"></script>
+	<script src="package.es5.js"></script>
+	<script src="gamePage.es5.js"></script>
+	<script src="gameDetail.es5.js"></script>
+	<script src="consult.es5.js"></script>
+	<script src="childPage.es5.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/lslider-gxl.js"></script>
+	<script src="js/changeHash.js"></script>
+	<script src="js/reg_login.js"></script>
+	<script src="js/gift.js"></script>
+	<script src="js/load_more.js"></script> -->
+	<script>
+		mui.init({
+			swipeBack:false,
+			// pullRefresh: {
+			//   container: '#pullrefresh',
+			//   down: {
+			//     callback: pulldownRefresh
+			//   },
+			//   up: {
+			//     contentrefresh: '正在加载...',
+			//     callback: pullupRefresh
+			//   }
+			// } //
+		});
+
+		// var gallery = mui('.mui-slider');
+		// gallery.slider({
+		//   interval:5000//
+		// });
+		//
+
+		var eleContents = $("div.mui-control-content");
+		var userHeader = $("header.mui-bar.mui-bar-nav");
+		var abtns = $("a.mui-tab-item");
+		var query = "tabbar";
+		var title = "霸气游戏878.com" ;//+ query;
+		document.title = title;
+		history.pushState({ title: title }, title, location.href.split("?")[0] + "?" + query);
+		// 闭包 创建事件绑定函数
+		// var oEvent = {};
+		// (function(){
+		//     var addEvent = function(){ /*代码的实现省略了*/ };
+		//     function removeEvent(){}
+
+		//     oEvent.addEvent = addEvent;
+		//     oEvent.removeEvent = removeEvent;
+		// })();
+
+
+		//取消组件下a标签默认跳转问题
+		abutton = $("a.no-tab");
+		// console.log(abutton);
+		abutton.on("tap",function(event){
+			console.log("click");
+			return false;
+		},false);
+		// 首页跳转游戏
+		var toGame =$("button.cforgame");
+		toGame.click(function(event) {
+			console.log("toGame");
+			fnHashTrigger("tabbar-with-contact");
+
+		});
+		// 任何跳转 都返回页面顶部
+		$("a.mui-tab-item").on('tap',  function(event) {
+			 // console.log("fei");
+			 $(window).scrollTop(0);
+			/* Act on the event */
+		});
+	</script>
+
+</html>
