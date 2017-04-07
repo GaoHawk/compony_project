@@ -1,0 +1,1107 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>我的圈子</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/vue.js"></script>
+
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="css/MUI.min.css">
+    <script>
+
+    </script>
+
+    <!--App自定义的css-->
+    <style>
+      html,body{
+         height:100%;
+      }
+      body{
+         font-family: "Microsoft YaHei";
+      }
+      .mui-plus.mui-android header.mui-bar{
+        display: none;
+      }
+      .mui-plus.mui-android .mui-bar-nav~.mui-content{
+        padding: 0;
+      }
+      li.mui-table-view-cell.cutstomLine:after{
+        content: "";
+        position: absolute;
+        height: 96px;
+        width: 1px;
+        background-color: #aaa;
+        right: 0px;
+        left: 0px;
+        top: 4px;
+        height:auto!important;
+      }
+      @media only screen and (max-width: 375px) and (min-width: 340px){
+          ul#example-3  span.distance{
+             margin-left: 20%;
+          }
+      }
+      @media screen and (min-width:  400px){
+          li.mui-col-sm-3{
+             width:33.33333333%
+          }
+          ul#example-3  span.distance{
+             margin-left: 27%;
+          }
+      }
+
+      ul#example-1,ul#example-2,ul#example-3,ul#example-5{
+        background-color: #efeff4;
+      }
+      ul#example-1 li,ul#example-2 li,ul#example-3 li,ul#example-5 li{
+        margin: 14px 0;background: #fff;border-bottom: 0.5px solid rgba(177, 177, 177, 0.76);
+      }
+      ul#example-1 li a{
+         padding-bottom: 5px;
+         padding-top:3px;
+      }
+      ul#example-2 li{
+         border-radius: 5px 5px 0 0;
+         height: 120px;
+         margin:8px 0;
+         padding: 0;
+         border:0;
+      }
+      ul#example-2 li img.mui-media-object,ul#example-5 li img.mui-media-object{
+         border-radius: 50%;
+         max-width: 57px;
+         height: 57px;
+         margin-right: 30px;
+         margin-top: 1px;
+         margin-left: 15px;
+      }
+      ul#example-2 li img.mui-media-object.orderB, ul#example-5 li img.mui-media-object.orderB{
+        -webkit-filter: grayscale(100%) opacity(40%);
+        -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        -o-filter: grayscale(100%);
+        filter: grayscale(100%) opacity(40%);
+        filter: gray;
+      }
+      ul#example-2 li div.mui-media-body.orderB, ul#example-5 li div.mui-media-body.orderB{
+          color:#a6a6a6;
+      }
+      ul#example-4 li span.spanInfo{
+        position: absolute;
+        right: 37px;
+        bottom: -7px;
+      }
+      ul#example-4 li{
+         height: 72px;
+         line-height: 51px;
+      }
+      ul#example-4 li a{
+        height:inherit;
+        margin-left: 12%;
+      }
+      ul#example-3 li {
+        padding-bottom: 4px;
+        padding-top: 8px;
+        padding-right: 10px;
+      }
+      ul#example-3 li span{
+         margin-left: 7%;
+      }
+
+      ul#example-5 ul.info li{
+         margin:0;
+         padding: 0;
+         border:0;
+         margin-bottom: 5px;
+         position: static;
+         overflow: hidden;
+      }
+      ul#example-2 li div.li_header,ul#example-5 li div.li_header{
+         color:#eee;
+         position: relative;
+         /*right: 8px;*/
+         height: 23px;
+
+         padding-left: 8px;
+         margin-bottom: 4px;
+         border-bottom: 1px solid rgba(177,177,177,0.45);
+         min-height: 23px;
+         font-size: 12px;
+         line-height: 23px;
+ /*        background: #6ce47c;   /*#f9791b*/*/
+      }
+      ul#example-2 li div.li_header.orderA,ul#example-5 li div.li_header.orderA{
+          background: #6ce47c;
+      }
+      ul#example-2 li div.li_header.orderB,ul#example-5 li div.li_header.orderB{
+          background:#a6a6a6;
+      }
+      ul#example-2 li div.li_header.orderC,ul#example-5 li div.li_header.orderC{
+          background: #f9791b;
+      }
+      ul#example-2 li div.marker.orderA,ul#example-5 li div.marker.orderA{
+         color:#14c514;
+         border-color: #14c514;
+      }
+      ul#example-2 li div.marker.orderB,ul#example-5 li div.marker.orderB{
+          color:#a6a6a6;
+          border-color: #a6a6a6;
+      }
+      ul#example-2 li div.marker.orderC,ul#example-5 li div.marker.orderC{
+          border-color: #f9791b;
+          color:#f9791b;
+      }
+      .l_header {
+        padding-left: 13px;
+        padding-top: 5px;
+        border-top: 1px solid rgba(177,177,177,0.76);
+        min-height: 27px;
+        font-size: 14px;
+        line-height: 26px;
+       }
+      ul#example-2 li div.li_header span,ul#example-5 li div.li_header span{
+         margin-right: 19px;
+      }
+      ul#example-2 li div.li_footer,ul#example-5 li div.li_footer{
+         position: relative;
+         /*right: 8px;*/
+         /*padding-left: 8px;*/
+         margin-top: 18px;
+         border-top: 1px solid rgba(177,177,177,0.76);
+         min-height: 27px;
+         font-size: 12px;
+         line-height: 21px;
+         color: #666;
+      }
+      .l_footer{
+        padding-left: 8px;
+        border-top: 1px solid rgba(177,177,177,0.76);
+        min-height: 27px;
+        font-size: 12px;
+        line-height: 21px;
+        /*color: #666;*/
+      }
+
+      ul#example-2 li div.li_footer button.mui-btn,ul#example-5 li div.li_footer button.mui-btn{
+        padding: 1px 9px;
+        margin-top: 1px;
+        float: right;
+        margin-right: 14px;
+        font-size: 12px;
+      }
+      ul#example-2 li div.li_footer span:nth-child(2),ul#example-5 li div.li_footer span:nth-child(2){
+          margin-right: 9px;
+          float: right;
+      }
+      @media screen and (max-width:  320px){
+          ul#example-2 li div.li_footer,ul#example-5 li div.li_footer{
+               min-height:  49px;
+          }
+      }
+      ul#example-1 li span{
+        position: absolute;
+        /*background: #666;*/
+        color: white;
+        height: 74px;
+        bottom: 0px;
+        right: 2px;
+        width: 76px;
+        line-height: 70px;
+        text-align: center;
+      }
+      ul#example-1 li span:nth-child(1){
+
+          /*background: blue;*/
+      }
+      ul#example-1 li span:nth-child(2){
+        /*background: green;*/
+      }
+
+      ul#example-1 li h5{
+        color: #f6a20d;
+        display: inline-block;
+        width: 44%;
+        font-size: 16px;
+        min-width: 149px;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+/*        text-align: center;
+        border: 1px solid;
+        border-radius: 3px;
+        padding: 3px 8px;*/
+      }
+      ul#example-1 li h5.typeB{
+         color:#a6a6a6;
+      }
+      ul#example-3 h4{
+         display: inline-block;
+      }
+      ul#example-3 p{
+        display: inline-block;
+      }
+      ul#example-3 img{
+         max-width: 71px;
+         height: 74px;
+         top: 3px;
+         position: relative;
+         bottom: 4px;
+      }
+      ul#example-3 p{
+        max-width:210px;
+  /*      text-indent:2em;*/
+        margin-top: 9px;
+        border-top: 1px solid rgba(136, 136, 136, 0.41);
+        margin-bottom: 5px;
+        font-size: 15px;
+        color:#887;
+      }
+      ul.mui-table-view.info.cancleBefore{
+         /*right:7px;*/
+         top:2px;
+      }
+      ul.mui-table-view.info.cancleBefore:before{
+         height:0!important;
+      }
+      /*优惠卷样式*/
+      #example-1 li span.couponA {
+         background: url(images/personal/userCenter/A.png) no-repeat;
+         background-size: cover;
+         border-radius: 6px 1px;
+      }
+      #example-1 li span.couponB{
+         background: url(images/personal/userCenter/B.png) no-repeat;
+         background-size: cover;
+         border-radius: 6px 1px;
+      }
+      #example-1  .shopIcon{
+            height: 54px;
+            display: inline-block;
+            width: 54px;
+            background-repeat:no-repeat;
+            border-radius: 50%;
+            float: left;
+            margin-top: 2%;
+            background-size: cover;
+            margin-right:9px;
+      }
+      #example-1 .shopIcon.typeB{
+            -webkit-filter: grayscale(100%) opacity(40%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%) opacity(40%);
+            filter: gray;
+      }
+      /*个人资料样式*/
+      .mui-table-view-cell.info:after{
+         width:82%;
+         left:72px!important;
+      }
+
+      /*订单详情样式*/
+      ul#example-5 li{
+        padding: 0;
+        overflow: initial;
+      }
+      ul#example-5 ul.info div.ordState.orderA{
+        border-left: 4px solid #f9791b;
+        padding: 2px 3px;
+      }
+      ul#example-5 ul.info div.ordState.orderB{
+        border-left: 4px solid #14c514;
+        padding: 2px 3px;
+      }
+      /*用户居中信息*/      /*底部响应式*/
+      @media screen and (min-width: 400px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+        #mainPage span._userInfo{
+           left:42.5%;
+        }
+        #mainPage div._uId{
+          bottom: -18.5%;
+        }
+        div._bottom{
+           margin-top: 46%;
+        }
+        div._bottom p:nth-child(4){
+           font-size: 15px;
+        }
+        div._bottom div.logo{
+           bottom:8%;
+        }
+      }
+      @media screen and (min-width: 360px) and (max-width: 375px){
+        #mainPage span._userInfo{
+           left:39.7%;
+        }
+        #mainPage div._uId{
+          bottom: -20%;
+        }
+        div._bottom{
+           margin-top: 41%;
+        }
+        div._bottom p:nth-child(4){
+           font-size: 15px;
+        }
+        div._bottom div.logo{
+           bottom:8%;
+        }
+      }
+      @media screen and (max-width: 360px){
+          #mainPage span._userInfo{
+             left:41.5%;
+          }
+          #mainPage div._uId{
+            bottom: -21%;
+          }
+          div._bottom{
+             margin-top : 40%;
+          }
+          div._bottom p:nth-child(4){
+             font-size: 14px;
+          }
+          div._bottom div.logo{
+             bottom:8%;
+          }
+      }
+      body{
+        margin:0;
+      }
+
+     /*名字信息*/
+     ._userInfo:after{
+        content: ">";
+        position: relative;
+        left: 5px;
+     }
+     /*修改 箭头*/
+     .mui-icon-back:before, .mui-icon-left-nav:before{
+        content: ""!important;
+        background: url(images/shop-det/arrow.png) no-repeat;
+        background-size:cover;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+     }
+
+     /*收藏商店样式*/
+     .styleImgB{
+        /*left:27px;*/
+     }
+     .hasP{
+        bottom:33px!important;
+     }
+     .hasPD{
+        right:100px!important;
+        top:-5px!important;
+     }
+     .hp{
+        bottom: 16px;
+     }
+     .np{
+        bottom: 23px;
+     }
+     span.distance:before{
+         content:"";
+         background:url(images/home-page/gricon1.png) no-repeat;
+         display: inline-block;
+         width: 12px;
+         height: 10px;
+         background-size: cover;
+         transform: scale(1.2,1.2);
+     }
+    </style>
+  </head>
+
+  <body style="margin:0;">
+  <header id="header" class="mui-bar mui-bar-nav" style="display: none;background-color:rgba(0,0,0,0.6); ">
+      <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <h1 class="mui-title" style="color:#ccc;">导航栏</h1>
+    </header>
+    <div id='container' style=""></div>
+    <div class="mui-content" style="height:100%;padding-top: 0;">
+            <div id="mainPage" class="mui-control-content" style="display: block;height:100%">
+            <div v-bind:style="mainBgSty">
+               <div v-bind:style="imgStyle" style="background-size:contain ;"></div>
+               <div v-bind:style="uNameSty" class="_userInfo" name="#user_info" v-on:click="getInfo" >{{ userName }}</div>
+               <div v-bind:style="uIdSty" class="_uId">ID:{{ userId }} </div>
+
+            </div>
+            <ul class="mui-table-view mui-grid-view mui-grid-9" style="height: 131px;border-bottom: 0.5px #888 dashed;">
+                <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a  href="javascript:;" name="#user_coupon">
+                        <span v-bind:style="couponSty"></span>
+                        <div class="mui-media-body">我的优惠劵</div></a></li>
+                <li class="mui-table-view-cell cutstomLine mui-media mui-col-xs-4 mui-col-sm-3"><a href="javascript:;" name="#user_order">
+                        <span v-bind:style="orderSty"></span>
+                        <div class="mui-media-body">我的订单</div></a></li>
+                <li class="mui-table-view-cell cutstomLine mui-media mui-col-xs-4 mui-col-sm-3"><a href="javascript:;" name="#user_colShops">
+                        <span v-bind:style="collectSty"></span>
+                        <div class="mui-media-body">收藏店铺</div></a></li>
+
+
+            </ul>
+            <div v-bind:style="botSty" class="_bottom">
+            <!-- <div class="logo" v-bind:style="logoSty"></div> -->
+            <p :style="botPSty">联系邮箱 : hyssdhld@163.com </p>
+            <p :style="botPSty"> 联系电话: 027-88082018 </p>
+            <p style="text-align: center;" :style="botPSty">©弘羊盛世(武汉)实业有限公司</p>
+            </div>
+<!--             <div class="pageC" style="height:59px;width:59px;position: fixed;top:36px; left: 80%; right: auto;  bottom: auto; background:#6b6b6b no-repeat;background-size: contain;border-radius: 50%;z-index: 20;" name="#user_info">
+                  <i class="mui-icon mui-icon-chatbubble" style="margin-left: 18px;margin-top: 5px;"></i>
+                  <span style="color: white;display: inline-block;font-size: 10px;margin-left: 5px;margin-top: 5px;">个人资料</span>
+            </div> -->
+          </div>
+            <div id="user_coupon" class="mui-control-content">
+                  <ul id="example-1" class="mui-table-view" style="">
+                  <template v-if="render">
+                    <li v-for="item in items" class="mui-table-view-cell mui-media" style="">
+                     <a href="javascript:;">
+                     <span class="mui-pull-right" :class="{ 'couponA': item.used == 0 }" v-show="item.used == 0 " style="height: 100%;"><span style="line-height:23px;width: 50px;height:50px;top:20%;left:24%;"> ￥{{ item.money }} <br>未使用</span></span>
+                     <span class="mui-pull-right" :class="{ 'couponB': item.used==1 }"  v-show="item.used == 1" style="height: 100%;"> <span style="line-height:23px;width: 50px;height:50px;top:20%;left:24%;"> ￥{{ item.money }} <br>已使用</span></span>
+                     <span class="mui-pull-right" v-show="item.used == 2" style="height: 100%;"><span style="line-height:23px;width: 50px;height:50px;top:20%;left:24%;"> ￥{{ item.money }} <br>已过期</span></span>
+                       <div class="mui-media-body">
+                         <div class="shopIcon"  :class="{ 'typeA': item.used==0,'typeB': item.used==1}" v-bind:style="{backgroundImage: 'url(/resources/upload/store/' + item.shop_head + ')' }"></div>
+                         <h5 :class="{ 'typeB': item.used==1 }"> {{item.shop_name}}{{item.coupon_name}} </h5>
+                         <div class="code" style="font-size: 12px;">卷码 : {{item.code}} </div>
+                         <p  style="margin-bottom: 5px;margin-top: 1px;color:#a6a6a6;max-width: 188px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size: 12px;">{{item.useMethod}} </p>
+                       </div>
+                     </a>
+                    </li>
+                    <h3 v-show="dataL" style="text-align: center;color:#f9791b;">您还没有领取优惠卷</h3>
+                    </template>
+                  </ul>
+            </div>
+
+          <div id="user_order" class="mui-control-content">
+              <ul id="example-2"  class="mui-table-view" style="">
+              <template v-if="render">
+              <li v-for="item in items" class="mui-table-view-cell mui-media" v-on:click="orderInfo( $index)" name="#user_orderInfo">
+
+               <div class="li_header" v-bind:class="{'orderA': item.order_type==1,'orderB': item.order_type==2,'orderC': item.order_type ==0 }">
+                 {{ item.store_name }}
+                 <span class="mui-pull-right"> 订单号 : {{ item.order_no }} </span>
+                 </div>
+                 <img class="mui-media-object mui-pull-left" src="images/home-page/u76.png" v-bind:class="{'orderB':item.order_type == 2}">
+                 <div class="mui-media-body" style="font-size: 13px;margin-top: 10px;" v-bind:class="{'orderB': item.order_type == 2}">
+                  数量: {{ item.goods | computeN }}
+                  <p class='mui-ellipsis'> 总价: {{ item.goods | computeP }}元 </p>
+                 </div>
+                 <div class="marker" v-if="item.order_type == 2" v-bind:style="outOrder" v-bind:class="{'orderB': item.order_type == 2 }">
+                   <div  v-bind:style="orderSty" >
+                      已过期
+                   </div>
+                 </div>
+
+                 <div class="marker"  v-if="item.order_type == 1" v-bind:style="outOrder" v-bind:class="{'orderA':item.order_type == 1}">
+                   <div v-bind:style="orderSty" >
+                      已消费
+                   </div>
+                 </div>
+
+                 <div class="marker" v-if="item.order_type == 0" v-bind:style="outOrder" v-bind:class="{'orderC':item.order_type ==0 }">
+                   <div  v-bind:style="orderSty"  >
+                      未消费
+                   </div>
+                 </div>
+                 <div class="li_footer">
+                    <span style="margin-left: 14px;">订单日期 : {{ item.creat_time}} </span>
+                    <span>有效期 : {{ item.order_validity }} </span>
+                 </div>
+                </li>
+                <h3 v-show="dataL" style="text-align: center;color:#f9791b;">您还没有下过订单</h3>
+              </template>
+              </ul>
+          </div>
+          <div id="user_colShops" class="mui-control-content">
+               <ul id="example-3" class="mui-table-view" style="">
+               <template v-if="render">
+                 <li v-for="item in items" class="mui-table-view-cell mui-media" style="">
+                  <a href="javascript:;" @click="shopPage($index)" style="height:100px;">
+                    <div class="mui-media-body">
+                      <div style="display: inline-block;">
+                      <img class="mui-media-object" src="/resources/upload/store/{{ item.shopImage }}" ></div>
+                      <div style="display: inline-block;width: 65%;margin-left: 4px;max-height: 75px;margin-bottom: 0px;position: relative;">
+                      <h4 style="width: 100%;text-align: left;position: relative;bottom: 5px;" v-bind:class="{'hasP':!item.content }"> {{ item.shop }} </h4>
+                      <span class="distance" v-bind:class="{'hasPD':!item.content}" style="position: absolute;width:100%;text-align:left;top: 19px;right: 0;left:0;font-size: 12px;margin-left:0;"> {{ item.adds }} </span>
+                      <br>
+                      <p class='mui-ellipsis' v-html="item.content | ellipsis"> </p>
+                      </div>
+                      <div style="display: inline-block;width: 8%;position: relative;" v-bind:class="{'hp':item.content,'np':!item.content}">
+                        <img style="width: 28px;height:28px;" src="images/home-page/voucher.png" class="mui-pull-right" v-show="item.type==1">
+                        <img style="width: 28px;height:28px;" v-bind:class="{'styleImgB':item.type==1}" src="images/home-page/book.png" class="mui-pull-right" v-show="item.pay_type==1">
+                      </div>
+
+
+
+                    </div>
+                  </a>
+                 </li>
+                 <h3 v-show="dataL" style="text-align: center;color:#f9791b;">您还未收藏任何店铺</h3>
+               </template>
+               </ul>
+          </div>
+          <div id="user_info" class="mui-control-content">
+              <ul id="example-4"  class="mui-table-view" style="">
+                  <template v-if="render">
+                  <li class="mui-table-view-cell info">
+                    <a class="mui-navigate-right">
+                      <span style="color:#a6a6a6;">头像</span>
+                    </a>
+                    <img src="images/personal/userCenter/head.png" style="position: absolute;
+    top: 18px;width: 37px;">
+                    <span class="mui-pull-right spanInfo" >
+                    <div v-bind:style="styleObject" style="background-size:;"></div>
+                    </span>
+                  </li>
+                  <li class="mui-table-view-cell info">
+                    <a class="mui-navigate-right">
+                      <span style="color:#a6a6a6;">姓名</span>
+                    </a>
+                    <img src="images/personal/userCenter/nickname.png" style="position: absolute;
+    top: 14px;width: 33px;height: 37px;">
+                    <span class="mui-pull-right spanInfo" v-bind:style="chatStyle" > {{ userName }} </span>
+                  </li>
+                  <li class="mui-table-view-cell" v-on:click="savePhone" id='promptBtn'>
+                    <a class="mui-navigate-right" >
+                      <span style="color:#a6a6a6;">联系电话</span>
+                    </a>
+                    <img src="images/personal/userCenter/phone.png" style="position: absolute;
+    top: 17px;width: 30px;">
+                    <span class="mui-pull-right spanInfo" v-bind:style="chatStyle" > {{ phoneNum | secret }} </span>
+                  </li>
+
+                </template>
+              </ul>
+          </div>
+          <div id="user_orderInfo" class="mui-control-content">
+               <ul id="example-5"  class="mui-table-view" style="">
+               <template v-if="ok">
+                 <li v-for="item in items" class="mui-table-view-cell mui-media" style="padding: 0;">
+
+                   <ul class="mui-table-view info cancleBefore" >
+                      <div class="ordState" v-bind:class="{'orderA':item.order_type == 0,'orderB':item.order_type == 1}" >
+                         <span v-if="item.order_type == 1 " style="color:#14c514;padding-left: 9px;">已消费</span>
+                         <span v-if="item.order_type == 0 " style="color:#f9791b;padding-left: 9px;">未消费</span>
+                         <span style="color:#a6a6a6;margin-left: 8px;">{{ item.order_validity }}消费有效</span>
+                      </div>
+                      <div class="l_header">
+                        <img src="images/home-page/u76.png" style="border-radius: 50%;width: 37px;height: 37px;margin-top: 0px;">
+                        <span style="position: relative;display: inline-block;bottom: 13px;font-size:16px;font-weight: 600;left: 6px;">{{item.store_name}} </span>
+                      </div>
+                      <li v-for="prods in item.goods" class="mui-table-view-cell" style="color:#a6a6a6;"><span style="margin-left: 60px;">{{ prods.goodsName }}
+                     x{{ prods.goodsSum }}</span><span class="mui-pull-right" style="margin-right: 12px;"> ￥{{ prods.goodsPrice }} </span></li>
+                       <div class="l_footer" style="color:#222;"><span class="mui-pull-right" style="margin-right: 10px;">总价 : ￥{{ item.goods | computeP }}</span></div>
+
+                   </ul>
+                   <div class="orderNum" style="position: absolute;top: 160px;background: #fff;padding: 5px;width: 100%;">
+                       <span style="color:#a6a6a6;margin-left:12px;">订单号</span>
+                       <span v-if="item.order_type == 1" style="float:right;margin-right:6px;color:#14c514;"> {{ item.order_no }} </span>
+                       <span v-if="item.order_type == 0" style="float:right;margin-right:6px;color:#f9791b;">{{ item.order_no }}</span>
+                   </div>
+                   <div class="create_time" style="position: absolute;top:188px;width: 100%;padding: 5px;background: #fff;">
+                       <span style="color:#a6a6a6;margin-left: 12px;">订单时间</span>
+                       <span style="float:right;margin-right: 6px;color:#222;">{{ item.creat_time }}</span>
+                   </div>
+                 </li>
+
+               </template>
+               </ul>
+          </div>
+    </div>
+
+  </body>
+  <script src="js/MUI.min.js"></script>
+  <script>
+  var userInfo = location.href.split("?")[1].split("&");
+  if(!window.sessionStorage.userId){
+    window.sessionStorage.userId = userInfo[2].split("=")[1];
+    window.sessionStorage.userName = decodeURI(userInfo[1].split("=")[1]);
+    window.sessionStorage.userImage = userInfo[3].split("=")[1];
+  }
+
+  var uId= sessionStorage.userId;
+  var uimg = sessionStorage.userImage;
+      var eleContents = $("div.mui-control-content");
+      var userHeader = $("header.mui-bar.mui-bar-nav");
+      var abtns = $("a.mui-tab-item");
+      var lag = false;
+
+
+     $(function(){
+          $(window).scrollTop(0);
+
+          // alert(sessionStorage.userName);
+          console.log(sessionStorage);
+          // 从店铺详情回退到 收藏店铺页面
+          if(sessionStorage.userId){
+             console.log(sessionStorage.query);
+             fnHashTrigger(sessionStorage.query);
+             $.ajax({
+                 type: "GET",
+                 url:  "/getCollectShop?userid="+uId,
+                 contentType: "application/json;charset=UTF-8",
+                 dataType:"json",
+                 success:function(data){
+                     console.log(data);
+                     example3.render = true;
+                     example3.items = data.items;
+                     console.log(example3.$data);
+                     if(!(data.items.length>0)){
+                         example3.dataL = true;
+                     }
+                     fnHashTrigger(sessionStorage.query);
+                     var t = setTimeout(function(){
+                        lag =  true;
+                     },1500)
+                 },
+                 error: function (data) {
+                     console.log(data);
+                 }
+             });
+          }
+          vm1.imgStyle.background = 'url('+sessionStorage.userImage + ') 0% 0% / contain no-repeat white';
+          vm1.userName = sessionStorage.userName;
+          vm1.userId = uId;
+          var name = "用户中心";
+          // history.pushState({ title: name },document.title,location.href.split("?")[0].split("#")[0] + "?mainPage" );
+          // fnHashTrigger("mainPage");
+
+     })
+    mui.init({
+      swipeBack:true //启用右滑关闭功能
+    });
+
+    // 切换页面跳转
+    $("li.mui-table-view-cell a").on("tap",function(){
+          lag = false;
+         console.log("changePage");
+         console.log($(this));
+         query = $(this).attr("name").split("#")[1];
+         if(query == "user_coupon"){
+
+           $.ajax({
+               type: "GET",
+               url:  "/getUserCoupon?userid="+uId,
+               contentType: "application/json;charset=UTF-8",
+               dataType:"json",
+               success:function(data){
+                   console.log(data);
+                   example1.render = true;
+                   example1.items = data.items;
+                   console.log(example1.$data);
+                   if(!(data.items.length>0)){
+                      example1.dataL = true;
+                   }
+                   fnHashTrigger(query);
+                   var t= setTimeout(function(){
+                      lag =  true;
+                   },1500)
+               },
+               error: function (data) {
+                   console.log(data);
+               }
+           });
+         }else if(query == "user_order"){
+            if(!example2.render){
+              // 获取订单信息
+              $.ajax({
+                  type: "GET",
+                  url:  "/orders/"+ uId +"/orders",
+                  // url:"order.json",
+                  contentType: "application/json;charset=UTF-8",
+                  dataType:"json",
+                  success:function(data){
+                      console.log(data);
+                      example2.render = true;
+                      example2.items = data;
+                      // console.log(example2.$data.items[0].order_type);
+                      if(!(data.length>0)){
+                         example2.dataL = true;
+                      }
+                      fnHashTrigger(query);
+                      var t= setTimeout(function(){
+                         lag =  true;
+                      },1500)
+                  },
+                  error: function (data) {
+                      console.log(data);
+                  }
+              });
+            }else{
+               fnHashTrigger(query);
+               var t= setTimeout(function(){
+                  lag =  true;
+               },1500)
+            }
+
+         }else if(query == "user_colShops"){
+          $.ajax({
+              type: "GET",
+              url:  "/getCollectShop?userid="+uId,
+              contentType: "application/json;charset=UTF-8",
+              dataType:"json",
+              success:function(data){
+                  console.log(data);
+
+
+                  example3.render = true;
+                  example3.items = data.items;
+                  for(var i =0;i<example3.items.length;i++){
+                         // Vue.set(example3.items[i],'distance');
+                  }
+                  console.log(example3.$data);
+                  if(!(data.items.length>0)){
+                      example3.dataL = true;
+                  }
+                  fnHashTrigger(query);
+                  var t = setTimeout(function(){
+                     lag =  true;
+                  },1500)
+              },
+              error: function (data) {
+                  console.log(data);
+              }
+          });
+         }
+    })
+
+    // 个人资料跳转
+    // $("div.pageC").on("tap",function(){
+    //     query = $(this).attr("name").split("#")[1];
+    //     if(query == "user_info"){
+    //        $.ajax({
+    //            type: "GET",
+    //            url:  "/getUserInfo?userid=" + uId,
+    //            contentType: "application/json;charset=UTF-8",
+    //            dataType:"json",
+    //            success:function(data){
+    //                console.log(data);
+    //                example4.render = true;
+    //                example4.styleObject.background = "url(" + uimg + ") white no-repeat";
+    //                example4.styleObject.backgroundSize = "contain";
+    //                example4.userName = sessionStorage.userName ;
+    //                example4.phoneNum = data.phoneNum;
+    //                console.log(example4.$data);
+    //                fnHashTrigger(query);
+    //            },
+    //            error: function (data) {
+    //                console.log(data);
+    //            }
+    //        });
+    //     }
+    //     // fnHashTrigger(query);
+
+    // })
+    // 跳转到订单详情
+
+  </script>
+  <!-- vuejs代码 -->
+  <script>
+  Vue.filter('reverse', function (value) {
+    return value.split('').reverse().join('')
+  })
+
+ Vue.filter('secret', function(value){
+      if(value && value.length> 0 ){
+        return value.substring(0,3) + "****" + value.substring(7);
+      }else{
+        return '';
+      }
+
+ })
+
+  Vue.filter('computeN',function(value){
+    console.log(value)
+     var totalNum = 0;
+     for (var k in value) {
+        totalNum += value[k].goodsSum
+     }
+     return  totalNum;
+  })
+
+  Vue.filter('computeP',function(value){
+    var totalPrice = 0;
+    for(var k in value){
+       totalPrice += value[k].goodsPrice * value[k].goodsSum
+    }
+    totalPrice = parseFloat(totalPrice).toFixed(2)
+    return totalPrice;
+  })
+
+  Vue.filter('ellipsis', function(value){
+      if(value){
+        var len = value.length;
+        var arr = value.split('');
+        var result = '';
+        if(len>16){
+           var newV = arr.splice(0,16);
+
+          var arrs = '';
+          // console.log(arr)
+          if(arr.length > 13){
+             arr.length = 13;
+              arrs  = arr.join('') + '...'
+          }else{
+             arrs = arr.join('');
+          }
+          console.log(arr)
+          result = newV.join('') + "<br>" + arrs
+        }else{
+            result = value
+        }
+        return  result;
+      }else{
+        return '';
+      }
+
+  })
+
+    var vm1 = new Vue({
+        el:'#mainPage',
+        data:{
+            userName:'',
+            userId:'',
+            uNameSty:{
+              position:'relative',
+              top:'33px',
+              left:'5px',
+              marginRight:'5px',
+              // left:'42%',
+              fontSize:'19px',
+              color:'#eee',
+              // lineHeight:'190px',
+              fontWeight:'900'
+            },
+            gtStyle:{
+              position: 'relative',
+              left:'1%',
+              bottom:'1px',
+              fontSize:'15px'
+            },
+            uIdSty:{
+              color:'#eee',
+              position:'relative',
+              fontSize:'15px',
+              marginLeft:'5px',
+              fontStyle:'normal'
+            },
+            mainBgSty:{
+              width: '100%',
+              height:'32%',
+              background: 'url(images/personal/userCenter/bg.png) no-repeat',
+              textAlign: 'center'
+            },
+            couponSty:{
+              display: 'inline-block',
+              width: '45px',
+              height: '32px',
+              background: 'url(images/personal/userCenter/juan.png) no-repeat',
+              backgroundSize: 'cover'
+            },
+            orderSty:{
+              display: 'inline-block',
+              width: '32px',
+              height: '32px',
+              background: 'url(images/personal/userCenter/order.png) no-repeat',
+              backgroundSize: 'contain'
+            },
+            collectSty:{
+              display: 'inline-block',
+              width: '36px',
+              height: '32px',
+              background: 'url(images/personal/userCenter/collection.png) no-repeat',
+              backgroundSize: 'contain'
+            },
+            botSty:{
+              color:'#777',
+              fontSize:'13px'
+              // marginTop:'61%'
+            },
+            botPSty:{
+              // marginLeft:'28%',
+              textAlign:'center',
+              marginTop:'10px',
+              marginBottom:'10px'
+              // fontSize:'15px'
+            },
+            logoSty:{
+               display:'inline-block',
+               width:'70px',
+               height:'70px',
+               position:'absolute',
+               left:'5%',
+               // bottom:'5%',
+               background:'url(images/personal/userCenter/logo.png) no-repeat',
+               backgroundSize:'contain'
+            },
+            imgStyle:{
+              height:'81px',
+              width:'81px',
+              backgroundSize:'contain',
+              display:'inline-block',
+              borderRadius:'50%',
+              position: 'relative',
+              top: '27px',
+              background:''
+            }
+
+        },
+        methods:{
+           getInfo:function(event){
+               query = "user_info";
+               if(!example4.render){
+                $.ajax({
+                    type: "GET",
+                    url:  "/getUserInfo?userid=" + uId,
+                    contentType: "application/json;charset=UTF-8",
+                    dataType:"json",
+                    success:function(data){
+                        console.log(uId);
+                        console.log(data);
+                        example4.render = true;
+                        example4.styleObject.background = "url(" + uimg + ") white no-repeat";
+                        example4.styleObject.backgroundSize = "contain";
+                        example4.userName = sessionStorage.userName ;
+                        example4.phoneNum = data.phoneNum;
+                        console.log(example4.$data);
+                        fnHashTrigger(query);
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+              }else{
+                  fnHashTrigger(query);
+              }
+           }
+        }
+    })
+    var example1 = new Vue({
+         el: '#example-1',
+         data:{
+              render:false,
+              items:[
+                  // { code: '36582987' ,used:true},
+                  // { code: '36582988',used:false}
+              ]
+         }
+    })
+    var dataInfo ;
+    var example2 = new Vue({
+        el:"#example-2",
+        data:{
+           render:false,
+           outOrder:{
+              position:'absolute',
+              width:'60px',
+              height:'60px',
+              right:'17px',
+              bottom:'33px',
+              borderRadius:'50%',
+              border:'1px solid'
+           },
+           orderSty:{
+             width:'14px',
+             fontSize:'13px',
+             lineHeight:'16px',
+             paddingTop:'4px',
+             margin:'0 auto'
+           },
+           items:[
+
+           ]
+        },
+        methods: {
+            orderInfo:function(index,event){
+              if(lag){
+                console.log(index);
+                console.log(this.items[index].time);
+                dataInfo = this.items[index];
+                example5.items = [];
+                example5.items.push(dataInfo);
+                if(!(dataInfo.order_type == 2)){
+                  example5.render = true;
+                  example5.ok = true;
+                  fnHashTrigger("user_orderInfo")
+                }
+                console.log(example5.$data);
+              }
+            }
+         }
+
+    })
+    console.log(dataInfo)
+    var example5 = new Vue({
+         el:'#example-5',
+         data: {
+            render:false,
+            ok:false,
+            items:[]
+         }
+    })
+
+    var example3 = new Vue({
+        el:"#example-3",
+        data:{
+            render:false,
+            items:[
+
+            ]
+        },
+        methods:{
+           shopPage:function(index,event){
+              console.log(this.items[index].time);
+              dataInfo = this.items[index];
+              window.location.href = "shopInform.html?id="+dataInfo.id;
+           }
+        }
+    })
+
+    // 个人资料
+    var example4 = new Vue({
+          el:"#example-4",
+          data:{
+              render:false,
+             styleObject: {
+                  display:'inline-block',
+                  width:'50px',
+                  height:'50px',
+                  background:'white no-repeat',
+                  // backgroundSize:'contain',
+                  borderRadius:'50%'
+              },
+
+              userName:'',
+              phoneNum:'',
+              chatStyle:{
+                  bottom:'11px'
+              }
+          },
+          methods:{
+             savePhone:function(event){
+                  console.log(event);
+                  // if(!this.phoneNum){
+                    var btnArray = ['确定', '取消'];
+                    mui.prompt('请输入你的手机号码：', '手机号', '信息完善', btnArray, function(e) {
+                      if (e.index == 0) {
+                        // console.log(e.value);
+                        // console.log(example4.phoneNum);
+                         example4.phoneNum =  e.value;
+                      }
+                    })
+                  // }
+             }
+          }
+
+    })
+  </script>
+  <!-- 距离定位 -->
+  <script>
+  </script>
+  <script src="js/changeHash.js"></script>
+</html>
