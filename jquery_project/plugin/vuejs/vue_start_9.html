@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Vue learn</title>
+        <script src="js/vue.js">
+        Vue.config.debug = true
+        // ES6 模板字符串
+        Vue.config.delimiters = ['${', '}']
+        // make it look more dangerous
+        Vue.config.unsafeDelimiters = ['{!!', '!!}'
+        // 开发环境关闭异步 模式便于调试
+        // Vue.config.async = false
+        </script>
+    </head>
+    <body>
+       <div id="app" v-bind:style="{color:activeColor,fontSize:fontSize+'px'}"></div>
+       <script>
+          new Vue({
+             el:"#app",
+             data:{
+               activeColor: 'red',
+               fontSize:30
+             }
+          })
+       </script>
+    </body>
+</html>

@@ -1,0 +1,105 @@
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    position: relative;
+    top: -20px;
+    left: -40px;
+    width:180px;
+    }
+
+.btn-info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    position: relative;
+    top: 0px;
+    width: 180px;
+    left: 50px;
+}
+.btn-info1 {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    position: relative;
+
+    width: 180px;
+
+}
+
+.btn-info1 {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.btn-info1:focus,
+.btn-info1.focus {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #1b6d85;
+}
+.btn-info1:hover {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.btn-info1:active,
+.btn-info1.active,
+.open > .dropdown-toggle.btn-info1 {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.btn-info1:active:hover,
+.btn-info1.active:hover,
+.open > .dropdown-toggle.btn-info1:hover,
+.btn-info1:active:focus,
+.btn-info1.active:focus,
+.open > .dropdown-toggle.btn-info1:focus,
+.btn-info1:active.focus,
+.btn-info1.active.focus,
+.open > .dropdown-toggle.btn-info1.focus {
+  color: #fff;
+  background-color: #269abc;
+  border-color: #1b6d85;
+}
+.btn-info1:active,
+.btn-info1.active,
+.open > .dropdown-toggle.btn-info1 {
+  background-image: none;
+}
+.btn-info1.disabled:hover,
+.btn-info1[disabled]:hover,
+fieldset[disabled] .btn-info1:hover,
+.btn-info1.disabled:focus,
+.btn-info1[disabled]:focus,
+fieldset[disabled] .btn-info1:focus,
+.btn-info1.disabled.focus,
+.btn-info1[disabled].focus,
+fieldset[disabled] .btn-info1.focus {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.btn-info1 .badge {
+  color: #5bc0de;
+  background-color: #fff;
+}
+
+
+
+
+#BootCancel{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    position: relative;
+    top: 89px;
+    left: 45px;
+    width: 180px;
+}
+#BootConfirm{
+	position: relative;
+    top: 89px;
+    width: 180px;
+    left: 83px;
+}

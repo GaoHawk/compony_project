@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Vue learn</title>
+        <script src="js/vue.js">
+        Vue.config.debug = true
+        // ES6 模板字符串
+        Vue.config.delimiters = ['${', '}']
+        // make it look more dangerous
+        Vue.config.unsafeDelimiters = ['{!!', '!!}'
+        // 开发环境关闭异步 模式便于调试
+        // Vue.config.async = false
+        </script>
+    </head>
+    <body>
+      <div id="example">
+ 		 a={{ a }}, b={{ b }}
+       </div>
+       <script>
+		 var vm = new Vue({
+		 	el:'#example',
+		 	data:{
+		 		a:1
+		 	},
+		 	computed:{
+		 		b:function(){
+		 			return this.a +1
+		 		}
+		 	}
+		 })
+		 vm.a = 2
+		 console.log(vm.b)
+       </script>
+    </body>
+</html>

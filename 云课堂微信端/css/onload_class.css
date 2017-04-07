@@ -1,0 +1,318 @@
+/*css��ʼ��*/
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+body{font:12px "΢���ź�","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%}
+a{text-decoration:none}
+a:hover{text-decoration:none;}
+em,i{font-style:normal}
+ul,ol,li{list-style:none}
+img{border:0;vertical-align:middle}
+/*������*/
+.clearfix:after{
+    content:"";
+    height:0;
+    visibility:hidden;
+    display:table;
+    clear:both;
+}
+.clearfix{
+    zoom:1;
+}
+body{
+    background: #f2f2f2;
+}
+.black{
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    display: none;
+}
+.black .finish {
+    height: 350px;
+    width: 38%;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 0px 0px 6px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 30%;
+    left: 30.27%;
+}
+.finish .title {
+    line-height: 43px;
+    text-align: center;
+    height: 43px;
+    background: #f0f0f0;
+    width: 100%;
+    border-bottom: 1px solid #BFBFBF;
+    font-size: 16px;
+    color: #444444;
+}
+.finish .title span {
+    float: right;
+    font-size: 36px;
+    color: #818182;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.finish .content{
+    height: 257px;
+    width: 87.5%;
+    padding: 20px 7.5% 0 5%;
+    font-size: 14px;
+    color: #000000;
+}
+.content .subject{
+    height: 30px;
+    line-height: 30px;
+}
+.subject select{
+    width:84% ;
+    padding-left: 2%;
+    margin-left: 6%;
+    height: 30px;
+    border: 1px solid #dcdcdc;
+    font-size: 16px;
+}
+.content .option label{
+    margin-left: 16%;
+    height: 40px;
+    line-height: 40px;
+    color: #9f9e9e;
+}
+.content .affix .click{
+    color: #69c2ec;
+    margin-left: 6%;
+    line-height: 30px;
+    cursor: pointer;
+}
+.content .import{
+    margin-top: 15px;
+}
+.content .import input{
+    height: 40px;
+    width:82% ;
+    padding-left: 2%;
+    margin-left: 7%;
+    background: #f2f2f2;
+    border-radius: 6px;
+    list-style: none;
+    border: none;
+    font-size:14px;
+    color: #9f9e9e;
+}
+.content .share{
+    font-size: 12px;
+    padding-left:16%;
+    margin-top: 20px;
+}
+.content .cancel span{
+    width: 40%;
+    height: 36px;
+    border-radius: 6px;
+    text-align: center;
+    float: left;
+    background: #dcdcdc;
+    color: #fff;
+    font-size: 14px;
+    line-height: 36px;
+    margin-top: 30px;
+    margin-left: 3%;
+}
+.content .cancel .up-button{
+    background: #69c2ec;
+    float: right;
+}
+.home{
+    width: 93.2%;
+    padding-left:4.8% ;
+    height: 50px;
+    border: 1px solid #e3e3e3;
+    font-size: 16px;
+    color: #898989;
+    line-height: 50px;
+    margin: 20px 1% 30px 1%;
+    background: #fff;
+}
+.all-content{
+    width: 98%;
+    margin: 0 1%;
+    box-shadow: 0px 0px 8px 0px #DFDFDF;
+    background: #fff;
+}
+.uploading{
+    height: 90px;
+    width: 92.9%;
+    padding-left: 4.8%;
+    padding-right: 2.3%;
+    color: #fff;
+}
+
+.uploading .uploading-button{
+    display: inline-block;
+    width:19.5% ;
+    height: 40px;
+    background: #fe8f3d;
+    font-size: 14px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 20px;
+}
+.uploading .capacity{
+    display: inline-block;
+    float: right;
+    width: 42%;
+    height: 50px;
+    color: #000;
+}
+.uploading .capacity .data{
+   border: 1px solid #ccc;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 6px;
+    margin-top: 25px;
+
+}
+.uploading .capacity .data i{
+    display: inline-block;
+    background: #69c2ec;
+    width: 58%;
+    padding-right: 2%;
+    color: #fff;
+    text-align: right;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.uploading .capacity .dilatation{
+    text-align: right;
+    color: #ff5352;
+    line-height: 30px;
+    padding-right: 2%;
+}
+.uploading .return{
+    float: right;
+    color: #898989;
+    width: 5.8%;
+    padding-left: 2%;
+    height: 30px;
+    line-height: 30px;
+    background: url("../../images/return.png") no-repeat left center;
+}
+.remove{
+    float: right;
+    padding-left: 1.8%;
+    color: #69c2ec;
+    font-size: 16px;
+    background: url("../../images/remove.png") no-repeat left center;
+    cursor: pointer;
+    margin-right: 2.3%;
+}
+.main-in{
+    width: 92.9%;
+    padding-left: 4.8%;
+    padding-right: 2.3%;
+    padding-top: 10px;
+}
+.main-in li{
+    height: 65px;
+    border-bottom: 1px solid #dcdcdc;
+    padding-top: 30px;
+    position: relative;
+}
+.main-in li .left{
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    border-radius: 23px;
+    background: #ff8178;
+    color: #fff;
+    font-size: 20px;
+    line-height: 46px;
+    text-align: center;
+}
+.main-in li .right{
+    position: absolute;
+    right:12px;
+    color: #898989;
+    font-size:14px;
+}
+.main-in li h6,.main-in li a{
+    position: absolute;
+    left: 64px;
+}
+.main-in li h6{
+    width: 208px;
+    font-size:14px;
+    color: #000000;
+    font-weight: normal;
+    background: url("../../images/fujian.png") no-repeat center right;
+}
+.main-in li a{
+    color: #898989;
+    font-size: 14px;
+    top:60px;
+    text-decoration: underline;
+}
+.main-in li:nth-child(2) .left{
+    background: #5bb9fa;
+}
+.main-in li:nth-child(3) .left{
+    background: #78d5a4;
+}
+.main-in li:nth-child(4) .left{
+    background: #19b3a5;
+}
+.main-in li:nth-child(4) h6{
+    width: 240px;
+    height: 20px;
+    background-image: url("../../images/video.png");
+}
+.main-in li:nth-child(4) h6 a{
+    top:0;
+    left: 0;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+.main-in li:nth-child(4){
+    position: relative;
+}
+.main-in li:nth-child(4) .daxiao{
+    position: absolute;
+    left: 64px;
+    top: 60px;
+    color: #898989;
+    font-size: 14px;
+}
+.main-in li:nth-child(4) .xiazai{
+    position: absolute;
+    left: 180px;
+    top: 60px;
+    color: #898989;
+    font-size: 14px;
+    text-decoration: none;
+    padding-left: 23px;
+    background: url("../../images/xiazai.png") no-repeat left center;
+}
+.main-in li:nth-child(5) .left{
+    background: #efae8e;
+}
+.main-in li:nth-child(6) .left{
+    background: #fbd272;
+}
+.main-in li .choose{
+    width: 20px;
+    height: 20px;
+    /*border: 1px solid #bfbfbf;*/
+    position: absolute;
+    top:60px;
+    right: 10px;
+    background: url("../../images/choose.png") no-repeat;
+}
+.main-in li .choose i{
+    display: block;
+    width: 100%;
+    height: 20px;
+    background: url("../../images/true.png") no-repeat;
+}

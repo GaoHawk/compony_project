@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+.work-in .firsts{
+   margin-bottom: -10px;
+}
+.work-in .lasts{
+    margin-top: -10px;
+}
+.dynamic-condition .title-nav .new{
+    border: none;
+    float: right;
+    margin-right: 45px;
+    margin-top: 15px;
+}
+.student-class .class-txt{
+    margin-top: 0;
+    background: none;
+}
+.else .all-teacher{
+    margin-top: 20px;
+}
+.all-teacher .table{
+    color: #898989;
+    line-height: 36px;
+    text-align: center;
+    width: 100%;
+    margin: 10px 0px;
+}
+.all-teacher .table .name{
+    font-size: 14px;
+    color: #000;
+}
+.all-teacher .table > thead > tr > th,.all-teacher .table > tbody > tr > th,.all-teacher .table > tfoot > tr > th,.all-teacher .table > thead > tr > td,.all-teacher .table > tbody > tr > td, .all-teacher.table > tfoot > tr > td{
+    border:none;
+}
+.all-teacher .student span{
+    width: 100%;
+}
+.all-teacher .my-class span{
+    background-image: url("../images/indexPage/teacher.png");
+}
+.schoolmate .my-class span{
+    background-image: url("../images/indexPage/schoolmate.png");
+}

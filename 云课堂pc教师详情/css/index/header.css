@@ -1,0 +1,117 @@
+﻿.header{
+    width: 100%;
+    height: 75px;
+    background: #69c2ec;
+}
+.header .logo{
+    width: 210px;
+    height: 75px;
+    background: url("../../images/logo.png") no-repeat center;
+    float: left;
+}
+.header .user{
+	position: relative;
+    float: right;
+    color: #fff;
+    font-size: 16px;
+    width: 150px;
+    height:100%
+}
+.user .name{
+    display: block;
+    width: 90px;
+    height: 75px;
+    /*line-height: 75px;*/
+    float: left;
+}
+.user .name i{
+    display: inline-block;
+    width: 28px;
+    height: 26px;
+    background: url("../../images/user.png") no-repeat left center;
+    vertical-align:middle;
+    margin-top: -10px;
+}
+.user .more{
+    display: inline-block;
+    width: 18px;
+    height: 10px;
+    background: url("../../images/style/more.png") no-repeat right center ;
+    float: left;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.user .backimg{
+       background-image: url("../../images/style/more-inback.png");
+    position: relative;
+    top: 60px;
+    width: 193px;
+    left: -99px;
+    height: 255px;
+    left: -60px;
+
+}
+#arrow-up {
+            width: 0px;
+            height: 0px;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 17px solid rgba(0, 0, 0, .175);
+            /*以下属性可以是IE5兼容*/
+            font-size: 0px;
+            line-height: 0px;
+            position:absolute;
+            top: -17px;
+            left: 50%;
+            margin-left: -5px;
+        }
+#arrow-up div{
+	width: 0px;
+            height: 0px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 15px solid white;
+            /*以下属性可以是IE5兼容*/
+            font-size: 0px;
+            line-height: 0px;
+           position: absolute;
+              top: 2px;
+    	left: -8px;
+}
+.some-style{
+    font-family:"微软雅黑";
+}
+
+.more-in {
+    font-size: 20px;
+    color: #898989;
+    width: 192px;
+    height: 256px;
+    padding-top: 15px;
+    background: url("../../images/indexPage/more-inback.png") no-repeat;
+    background-size: contain;
+    z-index: 999;
+    position: absolute;
+    top: 60px;
+    right: 1.7%;
+}
+.more-in li {
+    width: 100%;
+    height: 59px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+}
+.more-in li:hover {
+    background: #f5f6f7;
+    color: #69c2ec;
+    width: 98%;
+    margin: 0 auto;
+}
+a {
+    color: #5a5a5a;
+    text-decoration: none;
+}
+a:hover {
+    color:#69c2ec
+    }

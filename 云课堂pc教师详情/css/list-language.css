@@ -1,0 +1,217 @@
+*css初始化*/
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+/*body{font:12px "微软雅黑","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%}*/
+a{text-decoration:none}
+a:hover{text-decoration:none;}
+em,i{font-style:normal}
+ul,ol,li{list-style:none}
+img{border:0;vertical-align:middle}
+
+body{
+    height:2000px;
+}
+/*清除浮动代码*/
+.clearfix:after{
+    content:"";
+    height:0;
+    visibility:hidden;
+    display:table;
+    clear:both;
+}
+.clearfix{
+    zoom:1;
+}
+body{
+    height: 768px;
+    width: 1024px;
+    border: 1px solid #dcdcdc;
+    margin: 0 auto;
+    font-family: "微软雅黑";
+}
+.areaheart{
+    width: 1024px;
+    margin: 0 auto;
+}
+/*-----------------------------------头部-----------------------------------*/
+.header{
+    height: 73px;
+    background:#69c2ec;
+}
+.header .logo-in{
+    width: 295px;
+    height: 56px;
+    float: left;
+    padding:17px 0px 0px 35px;
+    position: relative;
+}
+.logo-in h1{
+    background: url("../images/logo.png") no-repeat;
+    width: 53px;
+    height: 38px;
+}
+.logo-in .yunketang{
+    width: 107px;
+    height: 56px;
+    display: block;
+    position: absolute;
+    top:14px;
+    left:104px;
+    font-size: 34px;
+    color: #fff;
+}
+.logo-in .school{
+    font-size: 20px;
+    color: #fff;
+    width: 215px;
+    height: 40px;
+    position: absolute;
+    top:24px;
+    left:230px;
+}
+
+.header .change{
+    width: 250px;
+    height: 33px;
+    float: right;
+    padding-top: 40px;
+}
+.change span a{
+    font-size: 14px;
+    color: #fff;
+}
+.change-c a{
+    background: url("../images/change-c.png") no-repeat left center;
+    display: inline-block;
+    width:80px;
+    padding-left:20px ;
+}
+.change-p a{
+    background: url("../images/change-p.png") no-repeat left center;
+    display: inline-block;
+    width:80px;
+    padding-left:14px ;
+}
+
+/*-----------------------------------内容区域-----------------------------------*/
+.main{
+    width: 100%;
+    padding-right: 50px;
+    height:695px;
+}
+.main .nav{
+    width: 239px;
+    height: 100%;
+    background:#f2f2f2;
+    float: left;
+}
+.nav li{
+    height: 46px;
+    padding-top: 25px;
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 1px solid #e7e7e7;
+    padding-left: 58px;
+}
+.nav li a{
+    color: #898989;
+    font-size: 16px;
+    background: url("../images/hui-icon/all.png") no-repeat;
+    display: block;
+    width: 66px;
+    height: 26px;
+    padding-left: 34px;
+}
+.nav .first a{
+    background-image:url("../images/hui-icon/all.png") ;
+}
+.nav li:nth-child(2){
+    background: #fff;
+    border-right: none;
+}
+.nav li:nth-child(2) a{
+    background-image:url("../images/blue-icon/yuwen.png") ;
+    color: #69c2ec;
+}
+.nav li:nth-child(3) a{
+    background-image:url("../images/hui-icon/shuxue.png") ;
+}
+.nav li:nth-child(4) a{
+    background-image:url("../images/hui-icon/yingyu.png") ;
+}
+.nav li:nth-child(5) a{
+    background-image:url("../images/hui-icon/lishi.png") ;
+}
+.nav li:nth-child(6) a{
+    background-image:url("../images/hui-icon/dili.png") ;
+}
+.nav li:nth-child(7) a{
+    background-image:url("../images/hui-icon/zhengzhi.png") ;
+}
+
+.main .main-in{
+    width: 696px;
+    padding-right: 50px;
+    float:right;
+    height: 100%;
+}
+.main-in li{
+    height: 65px;
+    border-bottom: 1px solid #dcdcdc;
+    padding-left: 5px;
+    padding-top: 43px;
+    position: relative;
+}
+
+.main-in li .right{
+    position: absolute;
+    right:12px;
+    color: #898989;
+    font-size:14px;
+}
+.main-in li h6,.main-in li a{
+    position: absolute;
+
+}
+.main-in li h6{
+    width: 208px;
+    font-size:14px;
+    color: #000000;
+    font-weight: normal;
+    background: url("../images/fujian.png") no-repeat center right;
+}
+.main-in li a{
+    color: #898989;
+    font-size: 14px;
+    top:73px;
+    text-decoration: underline;
+}
+.main-in li:nth-child(4) h6{
+    width: 240px;
+    height: 20px;
+    background-image: url("../images/video.png");
+}
+.main-in li:nth-child(4) h6 a{
+    top:0;
+    left: 0;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+.main-in li:nth-child(4){
+    position: relative;
+}
+.main-in li:nth-child(4) .daxiao{
+    position: absolute;
+    top: 73px;
+    color: #898989; ;
+    font-size: 14px;
+}
+.main-in li:nth-child(4) .xiazai{
+    position: absolute;
+    left:113px;
+    top: 73px;
+    color: #898989; ;
+    font-size: 14px;
+    text-decoration: none;
+    padding-left: 23px;
+    background: url("../images/xiazai.png") no-repeat left center;
+}

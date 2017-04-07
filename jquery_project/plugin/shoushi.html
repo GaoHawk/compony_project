@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="css/index.css" rel="stylesheet">
+  <script src="js/jQuery-2.2.1.min.js"></script>
+  <link rel="stylesheet" href="css/font/font.css">
+  <style>
+  .fontTest{
+    font-family:toonFont;
+  }
+  .wrapper {
+     height: 300px;
+      background: #ccc;
+      text-align: center;
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
+      -webkit-align-items:center;
+      justify-content: center;
+      -webkit-justify-content:center;
+      overflow: hidden;
+  }
+
+  @-webkit-keyframes flash {
+    from, 50%, to {
+      opacity: 1;
+    }
+
+    25%, 75% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes flash {
+    from, 50%, to {
+      opacity: 1;
+    }
+
+    25%, 75% {
+      opacity: 0;
+    }
+  }
+
+  .flash {
+    -webkit-animation-name: flash;
+    animation-name: flash;
+  }
+
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+  .lena {
+      position: relative;
+      width: 200px;
+      height: 200px;
+  }
+
+  .mask {
+      width: 200px;
+  }
+
+  * {
+    -webkit-user-select: none;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <div class="wrapper">
+          <img src="image/len_std.jpg" alt="" class="lena flash">
+      </div>
+      <div>
+        <label for="">Pinch</label>
+        <span>1</span>
+        <br>
+        <label for="">Rotate</label>
+        <span>0</span>
+        <div class="fontTest">上下左右</div>
+      </div>
+    </div>
+  </div>
+  <!-- <script type="text/javascript" src='./bundle.js'></script> -->
+  <script>
+  var wrapper = document.getElementsByClassName("wrapper");
+  var global = {};
+  wrapper[0].addEventListener('touchstart',_onTouchStart, false);
+  wrapper[0].addEventListener('touchmove',_onTouchMove, false);
+  wrapper[0].addEventListener('touchend',_onTouchEnd, false);
+  // wrapper.on("touchmove",_onTouchMove);
+  // wrapper.on("touchend",_onTouchEnd);
+
+
+  global._getTime = function(){
+    return new Date().getTime();
+  }
+
+  global._getDistance(xLen,yLen) {
+     return Math.sqrt(xLen*xLen + yLen*yLen);
+  }
+
+  function _onTouchStart(e){
+
+    clearTimeout(global.longPressTimeout);
+
+    if(global.startTime){
+      //保存上一次touchstart
+      global.previousTouchTime = global.startTime;
+      global.previousTouchPoint = {
+            startX :  global.startX,
+            startY :  global.startY
+      };
+    }
+
+    // console.log(e);
+    global.startX = e.changedTouches[0].pageX;
+    global.startY = e.changedTouches[0].pageY;
+    console.log(global.startX + "," + global.startY);
+    if(e.changedTouches.length > 1){
+      var point1 = e.changedTouches[0];
+      var point2 = e.changedTouches[1];
+      var xLen = Math.abs(point2.pageX - point1.pageX);
+      var yLen = Math.abs(point2.pageY - point1.pageY);
+      alert(xLen + "," + yLen);
+      // global.touchDistance = global._getDistance(xLen,yLen);
+    }else {
+      //记录touch开始时间
+      global.startTime = global._getTime();
+
+      // 判断双击
+      if(global.previousTouchPoint) {
+        // console.log(global);
+         if(Math.abs(global.startX - global.previousTouchPoint.startX) < 10 &&
+            Math.abs(global.startY - global.previousTouchPoint.startY) < 10 &&
+            Math.abs(global.startTime - global.previousTouchTime) < 300) {
+              global._emitEvent("onDoubleTap");
+         }
+      }
+
+      // 长按事件
+      global.longPressTimeout = setTimeout(function(){
+            global._emitEvent("onLongPress");
+      },800);
+
+    }
+
+    // this.startX = e
+  }
+  function _onTouchMove(e){
+
+    clearTimeout(global.longPressTimeout);
+    // console.log(e);
+    global.moveX = e.touches[0].pageX;
+    global.moveY = e.touches[0].pageY;
+    console.log(global.moveX + "," + global.moveY);
+  }
+  function _onTouchEnd(e){
+
+    clearTimeout(global.longPressTimeout);
+    console.log(e);
+    var timestamp = global._getTime();
+    if(global.moveX !== null && Math.abs(global.moveX - global.startX) >10 || global.moveY !==null && Math.abs(global.moveY - global.startY) >10 ){
+
+    }else {
+      if(timestamp - global.startTime < 500){
+         global._emitEvent("onTap");
+      }
+    }
+  }
+  global._emitEvent = function(type){
+    console.log(type);
+  }
+  </script>
+</body>
+</html>

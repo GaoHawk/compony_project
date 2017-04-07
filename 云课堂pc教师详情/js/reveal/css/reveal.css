@@ -1,0 +1,81 @@
+﻿/*
+	弹出框样式
+*/
+.reveal-modal-bg {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    background: rgba(0,0,0,.8);
+    z-index: 100;
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+.reveal-modal {
+    visibility: hidden;
+    top: 200px;
+    left: 60%;
+    margin-left: -300px;
+    width: 520px;
+    background: #fff url(../images/modal-gloss.png) no-repeat -200px -80px;
+    position: absolute;
+    z-index: 101;
+    padding: 0px 3px;
+    font-family: "微软雅黑";
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+    -box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+
+    .reveal-modal.small {
+        width: 200px;
+        margin-left: -140px;
+    }
+
+    .reveal-modal.medium {
+        width: 400px;
+        margin-left: -240px;
+    }
+
+    .reveal-modal.large {
+        width: 600px;
+        margin-left: -340px;
+    }
+
+    .reveal-modal.xlarge {
+        width: 800px;
+        margin-left: -440px;
+    }
+
+    .reveal-modal .close-reveal-modal {
+        font-size: 22px;
+        line-height: .5;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: #aaa;
+        text-shadow: 0 -1px 1px rbga(0,0,0,.6);
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .reveal-modal .close-reveal-modal:hover {
+            text-decoration:none;
+        }
+    .reveal-modal .reveal-modal_title {
+        line-height: 43px;
+        text-align: center;
+        height: 43px;
+        background: #f0f0f0;
+        width: 100%;
+        border-bottom: 1px solid #BFBFBF;
+        font-size: 16px;
+        font-weight:bold;
+        color: #444444;
+        font-family:"微软雅黑";
+    }

@@ -1,0 +1,137 @@
+﻿body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+body{font:62.5% "微软雅黑","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%}
+th{font-weight: normal;}
+/*a{text-decoration:none}
+a:hover{text-decoration:none;}*/
+em,i{font-style:normal}
+ul,ol,li{list-style:none}
+img{border:0;vertical-align:middle}
+.clearfix:after{
+    content:"";
+    height:0;
+    visibility:hidden;
+    display:table;
+    clear:both;
+}
+.clearfix{
+    zoom:1;
+}
+i{
+    color: #69c2ec;
+}
+.mainDiv{
+    background: url("../images/background.png") no-repeat;
+    background-size:cover;
+    position:absolute;
+    width:100%;
+    height:100%;
+    font:1.4rem "微软雅黑";
+}
+
+.logo{
+    width: 100%;
+    height: 70px;
+}
+.logo .logo-in{
+    float: left;
+    width: 50%;
+    height: 70px;
+    background: url(../images/logo1.png) no-repeat center left;
+    margin-left: 2%;
+}
+.logo .help{
+    float: right;
+    color: #fff;
+    width: 45%;
+    height: 44px;
+    line-height: 44px;
+    margin-right: 2.347%;
+    margin-top: 17px;
+    font-size: 14px;
+    text-align: right;
+}
+.logo .help a{
+    color: #fff;
+}
+.app{
+    width: 100%;
+}
+.app div {
+    width: 46%;
+    height: 144px;
+    text-align: center;
+    color: #000000;
+    line-height: 16px;
+}
+
+.app p{
+    position: relative;
+    bottom: -104%;
+}
+
+.app .ios2DCode{
+    float: left;
+    background: url("../images/ios.png") no-repeat center;
+    background-size: contain;
+    width: 50%;
+}
+.app .android2DCode{
+    float: right;
+    background: url("../images/Android.png") no-repeat center;
+    background-size: contain;
+    width: 50%;
+}
+
+.android2DCode .down{
+    bottom: -14px;
+}
+
+.lestar{
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    margin-top: 58%;
+}
+
+/*滚动条DIV*/
+.scrollDiv{
+    overflow-y: scroll;
+    height:140px;
+}
+
+
+/*消息弹窗*/
+.messageModel{
+    width:440px;
+}
+
+.message{
+    padding:10px;
+}
+
+.confirmBtn{
+    font-size: 18px;
+    width: 160px;
+    height: 40px;
+    line-height: 45px;
+    border-radius: 6px;
+    margin: 40px auto 15px auto;
+    text-align: center;
+    color: #fff;
+    background: #69c2ec;
+    cursor:pointer;
+}
+
+.confirmBtn:hover{
+    background:#38afe8;
+}
+
+.message p{
+   font-size: 18px;
+    margin: 10px 50px;
+}
+
+.keynote{
+    color:#69c2ec;
+}

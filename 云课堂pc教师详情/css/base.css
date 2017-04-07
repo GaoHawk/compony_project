@@ -1,0 +1,145 @@
+﻿/*----------------------------------------css初始化----------------------------------------*/
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+body{font:12px "微软雅黑","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%}
+th{font-weight: normal;}
+/*a{text-decoration:none}
+a:hover{text-decoration:none;}*/
+em,i{font-style:normal}
+ul,ol,li{list-style:none}
+img{border:0;vertical-align:middle}
+/*清除浮动代码*/
+.clearfix:after{
+    content:"";
+    height:0;
+    visibility:hidden;
+    display:table;
+    clear:both;
+}
+.clearfix{
+    zoom:1;
+}
+i{
+    color: #69c2ec;
+}
+.mainDiv{
+    background: url("../images/background.png") no-repeat;
+    background-size:cover;
+    position:absolute;
+    width:100%;
+    height:100%;
+    font:12px "微软雅黑";
+}
+
+.logo{
+    width: 100%;
+    height: 70px;
+}
+.logo .logo-in{
+    float: left;
+    width: 22.46%;
+    height:70px ;
+    background: url("../images/logo.png") no-repeat center bottom;
+}
+.logo .help{
+    float: right;
+    color: #fff;
+    width: 14.16%;
+    height: 44px;
+    line-height: 44px;
+    margin-right: 6.347%;
+    margin-top: 28px;
+    font-size: 14px;
+    text-align: right;
+}
+.logo .help a{
+    color: #fff;
+}
+.app{
+    width:320px;
+    height: 164px;
+    position: absolute;
+    right:6.347% ;
+    bottom: 60px;
+}
+.app div {
+    width: 46%;
+    height: 164px;
+    text-align: center;
+    color: #000000;
+    line-height: 16px;
+}
+
+.app p{
+    position: absolute;
+    bottom: -10px;
+    width: 50%;
+}
+
+.app .ios2DCode{
+    float: left;
+    background:url(../images/ios.png) no-repeat top left;
+    background-size:contain;
+}
+.app .android2DCode{
+    float: right;
+    background:url(../images/Android.png) no-repeat top right;
+    background-size:contain;
+}
+
+.android2DCode .down{
+    bottom:-26px;
+}
+
+.lestar{
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+
+/*滚动条DIV*/
+.scrollDiv{
+    overflow-y: scroll;
+    height:140px;
+}
+
+
+/*消息弹窗*/
+.messageModel{
+    width:440px;
+}
+
+.message{
+    padding:10px;
+}
+
+.confirmBtn{
+    font-size: 18px;
+    width: 160px;
+    height: 40px;
+    line-height: 45px;
+    border-radius: 6px;
+    margin: 40px auto 15px auto;
+    text-align: center;
+    color: #fff;
+    background: #69c2ec;
+    cursor:pointer;
+}
+
+.confirmBtn:hover{
+    background:#38afe8;
+}
+
+.message p{
+   font-size: 18px;
+    margin: 10px 50px;
+}
+
+.keynote{
+    color:#69c2ec;
+}

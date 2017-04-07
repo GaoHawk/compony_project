@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Where am I?</title>
+        <script>
+          window.onload = getMyLocation;
+
+          function getMyLocation(){
+             if(navigator.geolocation){
+                console.log(navigator.geolocation);
+                navigator.geolocation.getCurrentPosition(displayLocation);
+             }else{
+                alert("Oops, no-geolocation support.");
+             }
+          }
+
+          function displayLocation(position){
+            alert(1);
+              var latitude = position.coords.latitude;
+              var longitude = position.coords.longitude;
+
+              var _div = document.getElementById("location");
+              _div.innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
+          }
+        </script>
+    </head>
+    <body>
+    <div id="location">
+    Your location will go here
+    </div>
+    </body>
+</html>

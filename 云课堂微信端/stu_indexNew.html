@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="css/teacher-index.css" rel="stylesheet" />
+    <!-- JQuery -->
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <!-- Bootstrap框架 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <link rel="stylesheet" href="css/customBootstrap.css" />
+    <title>学生首页</title>
+    <link rel="stylesheet" href="css/onload_class.css"/>   <!-- 上传课件的css样式 -->
+    <link rel="stylesheet" href="css/personal_data.css"/> <!-- 个人资料css样式 -->
+    <script src="js/config.js"></script>
+    <script src="js/stu_index.js"></script>
+    <script src="js/jquery-form.js"></script>
+    <!-- header的css样式 -->
+    <link rel="stylesheet" href="css/header.css" />
+    <!-- laydate样式 -->
+    <link rel="stylesheet" href="js/need/laydate.css">
+    <link rel="stylesheet" href="js/skins/default/laydate.css">
+    <!-- datepicker样式 -->
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+</head>
+<body onload="$(window).scrollTop(0);">
+<div class="black">
+    <div class="finish issue-work">
+        <p class="title">上传作业<span>×</span></p>
+        <div class="content work-content">
+            <p>班级</p>
+            <label >高三（1）班<input  type="checkbox"></label><label >高三（1）班<input  type="checkbox"></label><label >高三（1）班<input  type="checkbox"></label>
+            <label >高三（1）班<input  type="checkbox"></label><label >高三（1）班<input  type="checkbox"></label><label >高三（1）班<input  type="checkbox"></label>
+            <div class="subject">
+                <span>科目</span>
+                <select name="user_name" id="select">
+                    <option value='0' selected='selected'>数学</option>
+                    <option value='1' >语文</option>
+                    <option value='2'>英语</option>
+                    <option value='3'>地理</option>
+                </select>
+            </div>
+            <input  class="work-input" type="text" value="请输入作业内容"/>
+            <div class="affix"><span>图片</span><span class="click">点击上传图片</span></div>
+            <span>交作业截止时间</span><span class="change-date">选择时间</span>
+            <div class="cancel"><span>取 消</span><span class="up-button">确认</span></div>
+        </div>
+    </div>
+    <div class="finish issue-work issue-message">
+        <p class="title">发送通知<span>×</span></p>
+        <div class="content work-content">
+            <div class="subject">
+                <span>接收人</span>
+                <select name="user_name" id="select">
+                    <option value='0' selected='selected'>所有班级</option>
+                    <!--<option value='1' >高三（1）班</option>-->
+                    <!--<option value='2'>高三（2）班</option>-->
+                    <!--<option value='3'>高三（3）班</option>-->
+                </select>
+                <div class="all-schools">
+                    <div class="school">
+                        <p>华中师范大学附属第一中学</p>
+                        <label class="current">高三(1)班<input  type="checkbox"></label><label >高三(1)班<input  type="checkbox"></label>
+                        <label >高三(1)班<input  type="checkbox"></label><label >高三(1)班<input  type="checkbox"></label>
+                    </div>
+                    <div class="school">
+                        <p>华中师范大学附属第一中学</p>
+                        <label >高三(1)班<input  type="checkbox"></label><label >高三(1)班<input  type="checkbox"></label>
+                        <label >高三(1)班<input  type="checkbox"></label><label >高三(1)班<input  type="checkbox"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="import"><span>标题</span><input type="text" value="输入标题"/></div>
+            <input  class="work-input" type="text" value="还可以输入100字"/>
+            <div class="cancel"><span>取 消</span><span class="up-button">确认</span></div>
+        </div>
+    </div>
+</div>
+<!--头部显示内容-->
+<div class="header">
+    <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse" style="border-color: #ddd;margin-top: 20px;">-->
+        <!--<span class="sr-only">切换导航</span>-->
+        <!--<span class="icon-bar" style="background: #fff;"></span>-->
+        <!--<span class="icon-bar" style="background: #fff;"></span>-->
+        <!--<span class="icon-bar" style="background: #fff;"></span>-->
+    <!--</button>-->
+    <div class="logo"></div>
+    <div class="dropdown user">
+        <button type="button" class="btn dropdown-toggle name" id="dropdownMenu1" data-toggle="dropdown" style="background:inherit;font-size:21px;">黄莎莎
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation stu_header">
+                <!--<a role="menuitem" tabindex="-1" href="#" onclick="per_data();">个人资料</a>-->
+                <a class="stu_btn" data-toggle="modal" data-target="#export_stus">个人资料</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="#">使用帮助</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="#">关于我们</a>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="login.html">退出登陆</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--所有动态显示内容-->
+<div class="content-area">
+    <div class="dynamic-condition">
+        <div class="title-nav">
+            <ul class="all-text nav">
+                <li id="all-content" class="current">所有动态</li>
+                <li id="homework-only">只看作业</li>
+                <li id="notice-only">只看通知</li>
+            </ul>
+            <!--<span class="new" onclick="location.reload()"></span>-->
+
+            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal_homework">布置作业</button>
+            <!--<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal_info">发送通知</button>-->
+            <!--<div style="display:inline-block;width:30px;border-left:1px solid black;height:25px;margin-top:12px;float: right;margin-right: -14px;">-->
+                <!--<div class="new" onclick="location.reload();"></div>-->
+            <!--</div>-->
+
+        </div>
+        <ul class="homework">
+
+        </ul>
+
+        <div class="all-message clearfix">
+
+            <div class="message-one">
+                <p class="message-alert"><i></i><span>给高三（2）班、高三（3）班发送了通知</span></p>
+                <p class="the">这周三临时放假，大家不用到学校</p>
+                <p>这周三临时放假，大家不用到学校这周三临时放假，大家不用到学校这周三临时放假，大家不用到学校这周三临时放假，大家不用到学校这周三临时放假，大家不用到学校</p>
+                <p class="date"><i></i>30”</p>
+                <p class="publish-data">2月22日  13:04   星期二</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--个人中心显示内容-->
+<div id="userCenters" style="display: none;background: #fff">
+    <div id="userCentersHeads">
+        <img src="images/arrow.png" alt=""/>
+        <span>个人中心</span>
+    </div>
+    <!--我的班级-->
+    <div class="class student-class" >
+        <p class="my-class"><span>我的班级</span></p>
+        <ul>
+            <!--<li >-->
+            <!--<div class="class-txt">-->
+            <!--<p class="schools">华中师范大学附属第一中学高三(2)班</p>-->
+            <!--<p><span>班号：033865</span></p>-->
+            <!--<p>教师：黄定法【教号:336985】</p>-->
+            <!--</div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+
+    <!--老师成员-->
+    <div class="class student-class all-teacher">
+        <p class="my-class"><span>老师成员</span></p>
+        <table class="table" id="accountBook">
+            <tbody>
+                <tr class="accountBook">
+                    <th>老师姓名</th>
+                    <th>教师号</th>
+                    <th>科目</th>
+                </tr>
+                <!--<tr>-->
+                <!--<td>班级空间</td>-->
+                <!--<td>236949</td>-->
+                <!--<td>未知</td>-->
+                <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+
+    <!--学生成员-->
+    <div class="class student-class all-teacher schoolmate clearfix">
+        <p class="my-class student"><span>学生 共<a class="peopleNum" style="color:#69c2ec"></a>人</span></p>
+        <table class="table studentId">
+            <tbody>
+            <tr class="name" style="color: #000">
+                <th>姓名</th>
+                <th>学号</th>
+            </tr>
+            <!--<tr>-->
+            <!--<td>宋十明学生</td>-->
+            <!--<td>11236978</td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--布置作业弹出框-->
+<div class="modal fade" id="Modal_homework" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top:13%;">
+        <div class="modal-content">
+            <div class="modal-header" style="box-shadow:0px 0.5px 4px -1px #888;background:#eee;border-radius:6px 6px 0 0;padding:10px;background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));background-image: linear-gradient(#f4f4f4, #ececec);">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align:center;">布置作业</h4>
+            </div>
+            <div class="school_class">
+                <div class="class_title">班级</div>
+                <label class="checkbox-inline">
+                    <span>高三（1）班</span>
+                    <input type="checkbox" id="inlineCheckbox1" value="option1">
+                </label>
+                <label class="checkbox-inline">
+                    <span>高三（2）班</span>
+                    <input type="checkbox" id="inlineCheckbox2" value="option2">
+                </label>
+                <label class="checkbox-inline">
+                    <span>高三（3）班</span>
+                    <input type="checkbox" id="inlineCheckbox3" value="option3">
+                </label>
+                <label class="checkbox-inline">
+                    <span>高三（1）班</span>
+                    <input type="checkbox" id="inlineCheckbox4" value="option4">
+                </label>
+                <label class="checkbox-inline">
+                    <span>高三（2）班</span>
+                    <input type="checkbox" id="inlineCheckbox5" value="option5">
+                </label>
+                <label class="checkbox-inline">
+                    <span>高三（3）班</span>
+                    <input type="checkbox" id="inlineCheckbox6" value="option6">
+                </label>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="name">科目</label>
+                        <select class="form-control" id="project-H" style="display:inline-block;width:85%;margin-left:6%;">
+                            <option>语文</option>
+                            <option>数学</option>
+                            <option>英语</option>
+                            <option>物理</option>
+                            <option>化学</option>
+                        </select>
+                    </div>
+                </form>
+                <div class="form-group">
+                    <textarea class="form-control content" rows="6" placeholder="输入作业内容"></textarea>
+                </div>
+                <form name="form" id="file2" enctype ="multipart/form-data" action="../upload/fileArray" method="POST" >
+                    <div class="form-group" >
+                        <label for="inputfile">图片</label>
+                        <input type="file"  name="file" id="inputfile2" style="display:inline-block;margin-left:6%;" onchange="checkChange(this);" multiple="multiple">
+                        <span style="color:red;"></span>
+                    </div>
+                    <div class="form-group" >
+                        <label for="inputfile">语音</label>
+                        <input type="file"  name="voice" id="inputfile3" style="display:inline-block;margin-left:6%;" onchange="checkChange(this);" >
+                        <span style="color:red;"></span>
+                    </div>
+                </form>
+
+                <div class="form-group">
+                    <label for="dtp_input2" class="col-md-2 control-label" style="padding: 0;padding-right: 14px;line-height: 30px;width: auto;">作业截止日</label>
+                    <!--                        <div class="input-group date form_date col-md-5" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 55%;">
+                                               <input class="form-control" id="dateVal" size="16" type="text" value="" readonly>
+                                               <span class="add-on"><i class="icon-remove"></i></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                           </div>
+                                        <input type="hidden" id="dtp_input2" value="" /><br/> -->
+                    <input type="text" name="endTimes" value="请选择结束时间" onfocus="if(value=='请选择结束时间'){value=''}" onblur="if(value==''){value='请选择结束时间'}" class="inputs date" style="padding: 5.5px;width: 47%;" onclick="laydate({istime: true, format: 'YYYY-MM-DDThh:mm:ssZ'})" readonly="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="position:relative;right:38%;width: auto;left:auto;top:0;">关闭</button>
+                    <button type="submit" class="btn btn-default" style="position:relative;right:35%;width: auto;left:auto;top:0;" onclick="submit_form(this,'homework');">提交</button>
+                    <!--                    <button type="button" class="btn btn-primary">提交更改</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/laydate.js"></script>
+<script>
+    function checkChange(a){
+        if($(a).val() !==''){
+            $(a).next().text('');
+        }
+    }
+    function uploadf(){
+        console.log(window);
+        window.location.href = "upload-file.html";
+    }
+    function getMyClass(){
+        window.location.href = "my_Class.html?id=" + userId + "&session=" +session + "&userName=" + userName;
+
+    }
+    $(".navbar-toggle").on("click",function(){
+        $(".content-area").hide();
+        $("#userCenters").show();
+    });
+    $("#userCentersHeads img").on("click",function(){
+        $(".content-area").show();
+        $("#userCenters").hide();
+    });
+    $('#dateVal').click(function(event) {
+        console.log($(this).val());
+    });
+
+</script>
+</body>
+</html>

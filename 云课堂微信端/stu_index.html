@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>学生界面</title>
+    <!-- 引入mint-ui组件样式 -->
+    <link rel="stylesheet" href="css/mint-ui.css">
+    <!--引入css样式-->
+    <link rel="stylesheet" href="css/stu_index.css"/>
+    <!-- 引入bootstrap组件-->
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugin.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <!-- Header -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#example-navbar-collapse">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img class="navbar-logo" src="images/logo.png" alt=""/>
+                    <div class="users" v-on:click="fn">
+                        <span v-cloak>{{ user_name }}</span>
+                        <span class="caret"></span>
+                        <ul id="perCenter" v-if="reveal">
+                            <li v-for="item in items" class="liStyle">
+                                <a  v-bind:href="item.url" class="aStyle">{{item.a}}</a>
+                            </li>
+                            <p class="pStyle">退出登录</p>
+                        </ul>
+                    </div>
+                </div>
+                <!--导航栏折叠效果-->
+                <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li  v-for="list in lists">
+                            <a v-bind:href="list.url">
+                                <img v-bind:src="list.img">{{ list.text }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Navbar -->
+        <mt-navbar class="page-part" :selected.sync="selected">
+            <mt-tab-item id="1">所有动态</mt-tab-item>
+            <mt-tab-item id="2">只看作业</mt-tab-item>
+            <mt-tab-item id="3">只看通知</mt-tab-item>
+        </mt-navbar>
+
+        <!-- tab-container -->
+        <mt-tab-container :active.sync="selected">
+            <!--所有动态-->
+            <mt-tab-container-item id="1">
+                <ul class="homeWork">
+                    <li v-for="dynamic in dynamics">
+                        <div class="message">
+                            <div class="teacher">
+                                <span v-cloak class="yu">{{ dynamic.course }}</span>
+                                <div class="task-busywork">
+                                    <span v-cloak class="jiang">{{ dynamic.publisher_name }}老师布置了作业</span>
+                                    <span v-cloak class="date">{{ dynamic.publish_at }}</span>
+                                </div>
+                            </div>
+                            <div class="work-in">
+                                <p class="start firsts">
+                                    <span class="classify neirong">作业内容</span>
+                                    <span class="definite">{{ dynamic.content }}<br></span>
+                                </p>
+                                <div class="clear"></div><p></p>
+                                <p>
+                                    <span class="classify voice">语音</span>
+                                    <span class="voice-date" v-on:click="voiceVue(e)"><i>{{ dynamic.record_url }}</i>{{ dynamic.record_length }}</span>
+                                </p>
+                                <p class="end lasts">
+                                    <span class="classify">截止时间</span>
+                                    <span class="end-date">{{ dynamic.deadline }}</span>
+                                </p>
+                            </div>
+                            <p class="comment">共1049条评论</p>
+                            <div class="comment-in">
+                                <input v-model="dynamic.message" type="text" placeholder="说两句吧">
+                                <span  class="button 463"  v-on:click="sendOut">发送</span>
+                                <div sytle="clear:both;"></div>
+                                <ul class="comments">
+                                    <li v-for="infor in dynamic.infors">
+                                        <p>
+                                            <span class="name" >{{infor.user_name }}</span>
+                                            <span>{{infor.content}}</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                                <p class="check-more 463">查看更多</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li v-for="notice in notices">
+                        <div class="all-message clearfix" style="display: block;">
+                            <div class="message-one">
+                                <p class="message-alert"><i></i><span>{{ notice.teacher }} 老师发送了通知</span></p>
+                                <p class="the">{{notice.title}}</p>
+                                <p>{{notice.content}}</p>
+                                <p class="date"><i></i>{{ notice.length }}</p>
+                                <p class="publish-data">{{ notice.date }}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </mt-tab-container-item>
+
+            <mt-tab-container-item id="2">
+                <!--只看作业-->
+
+            </mt-tab-container-item>
+
+            <!--只看通知-->
+            <mt-tab-container-item id="3">
+                <ul>
+                    <li v-for="notice in notices">
+                        <div class="all-message clearfix" style="display: block;">
+                            <div class="message-one">
+                                <p class="message-alert"><i></i><span>{{ notice.teacher }} 老师发送了通知</span></p>
+                                <p class="the">{{notice.title}}</p>
+                                <p>{{notice.content}}</p>
+                                <p class="date"><i></i>{{ notice.length }}</p>
+                                <p class="publish-data">{{ notice.date }}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </mt-tab-container-item>
+        </mt-tab-container>
+
+
+        <!--我的班级-->
+        <!--<mt-header :title="title">-->
+            <!--<mt-button v-link="'/'" icon="back" slot="left">返回</mt-button>-->
+        <!--</mt-header>-->
+        <!--<div class="class student-class">-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<div class="class-txt">-->
+                        <!--<p class="schools">{{ schools }}</p>-->
+                        <!--<p><span>班号：{{ classNum }}</span><span class="copy">   复制</span></p>-->
+                        <!--<p>教师：{{ classTea }}【教号:{{ classTeaNum }}】</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+        <!--老师成员-->
+        <!--<div class="class student-class all-teacher">-->
+            <!--<table class="table" id="accountBook">-->
+                <!--<tbody>-->
+                    <!--<tr class="accountBook">-->
+                        <!--<th>老师姓名</th>-->
+                        <!--<th>教师号</th>-->
+                        <!--<th>科目</th>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>班级空间</td>-->
+                        <!--<td>236949</td>-->
+                        <!--<td>未知</td>-->
+                   <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+
+        <!--学生成员-->
+        <!--<div class="class student-class all-teacher schoolmate clearfix">-->
+            <!--<table class="table studentId">-->
+                <!--<tbody>-->
+                    <!--<tr class="name" style="color: #000">-->
+                        <!--<th>姓名</th>-->
+                        <!--<th>学号</th>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>宋十明学生</td>-->
+                        <!--<td>11236978</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>哈哈</td>-->
+                        <!--<td>11236980</td>-->
+                    <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+    </div>
+
+
+    <!-- 先引入 Vue -->
+    <script src="js/vue.js"></script>
+    <!-- 引入mint-ui组件库 -->
+    <script src="js/mint-ui.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script src="js/stu_data.js"></script>
+    <script>
+        // 所有动态
+        var app=new Vue({
+            el:'#app',
+            data: {
+                user_name:'',
+                fixed:true,
+                selected:'1',
+                reveal:false,
+                schools:'关山中学一年级1',
+                classNum:'100422',
+                classTea:'班级空间',
+                classTeaNum:'236949',
+                title:'我的班级',
+                url:'https://www.baidu.com',
+                items:[
+                    {a:'个人资料',url:'https://www.baidu.com'},
+                    {a:'使用帮助'},
+                    {a:'关于我们'}
+                ],
+                lists:[
+                    {text:'我的班级',img:'images/class.png',url:'#'},
+                    {text:'老师成员',img:'images/teacher.png',url:'#'},
+                    {text:'学生成员',img:'images/schoolmate.png',url:'#'}
+                ],
+                dynamics:[
+                    {
+                      course:'英语',
+                      publisher_name:'小明',
+                      publish_at:'',
+                      content:'',
+                      record_length:'',
+                      record_url:'',
+                      noVoice:'',
+                      deadline:'',
+                      message:'',
+                        infors:[
+                            {
+                                user_name:"",
+                                content:""
+                            }
+                        ]
+                    }
+                ],
+                notices:[
+                    {teacher:'姜艳艳',title:'这周三临时放假，大家不用到学校',
+                     content:'这周三临时放假，大家不用到学校这周三临时放假，大家不用到学校这周三临时放假，大家不用到学校这周三临时放假，大家不用到学校这周三临时放假，大家不用到学校' ,
+                     length:'32”',date:'2月22日  13:04   星期二'
+
+                    }
+                ]
+            },
+            methods:{
+                fn:function(){
+                    if(this.reveal==false){
+                       this.reveal=true
+                   }else{
+                       this.reveal=false
+                    }
+                },
+                sendOut:function(){
+                    var value=this.dynamics[0].message.trim();
+                    if(value){
+                        this.dynamics[0].infors.push({user_name:this.user_name,content:value});
+                        this.dynamics[0].message=''
+                    }
+                },
+                voiceVue:function(that){
+                    alert("voice");
+                    console.log(that)
+                }
+            }
+        });
+    </script>
+</body>
+</html>
