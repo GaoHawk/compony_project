@@ -1,0 +1,47 @@
+{
+    "tableData01": [{
+    "general":"张亦云",
+    "generalID": "48781900452134",
+    "name": "3",
+    "address": "54",
+    "liliang":"168.00",
+    "zhenqi":140
+    }, {
+    "general":"夏侯惇",
+    "generalID": 48795704180134,
+    "name": 3,
+    "address": 54,
+    "liliang":228.00,
+    "zhenqi":40
+    }, {
+    "general":"董卓",
+    "generalID": 48795294643134,
+    "name": 3,
+    "address": 54,
+    "liliang":128.00,
+    "zhenqi":5
+    }, {
+    "general":"貂蝉",
+    "generalID": 48782339786134,
+    "name": 3,
+    "address": 53,
+    "liliang":178.00,
+    "zhenqi":300
+    }],
+    "tableData02":[{
+        "general":"董卓",
+        "generalID": 48795294643134,
+        "name": 3,
+        "address": 54,
+        "liliang":128.00,
+        "zhenqi":5
+    },
+    {
+        "general":"貂蝉",
+        "generalID": 48782339786134,
+        "name": 3,
+        "address": 53,
+        "liliang":178.00,
+        "zhenqi":300
+    }]
+}
